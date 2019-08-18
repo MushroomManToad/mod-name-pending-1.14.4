@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"i",
+		"i",
+		"s"
+	],
+	
+	"key":
+	{
+		"i": { "item": "vimion:vimion_shard" },
+		"s": { "item": "minecraft:stick"}
+	},
+	
+	"result": { "item": "dimion:vimionite_dagger" }
+}
