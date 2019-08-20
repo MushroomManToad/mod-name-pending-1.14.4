@@ -1,7 +1,9 @@
 {
 	"item.vimion.vimion_shard": "Vimion Shard",
+	"item.vimion.vimion_gemstone": "Vimion Gemstone",
 	"item.vimion.vimionite_dagger": "Vimionite Dagger",
 	"item.vimion.vimionite_tome": "Vimionite Tome",
+	"item.vimion.geologic_phaser": "Geologic Phaser",
 	
 	"block.vimion.vimion_block": "Block of Vimion",
 	"block.vimion.concealed_vimionite_ore": "Energetic Stone",

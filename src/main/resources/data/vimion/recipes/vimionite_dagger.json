@@ -10,9 +10,9 @@
 	
 	"key":
 	{
-		"i": { "item": "vimion:vimion_shard" },
+		"i": { "item": "vimion:vimion_gemstone" },
 		"s": { "item": "minecraft:stick"}
 	},
 	
-	"result": { "item": "dimion:vimionite_dagger" }
+	"result": { "item": "vimion:vimionite_dagger" }
 }

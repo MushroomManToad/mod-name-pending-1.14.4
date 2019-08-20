@@ -13,6 +13,7 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
 
+@SuppressWarnings("unused")
 public class ItemVimionDagger extends SwordItem
 {
 
