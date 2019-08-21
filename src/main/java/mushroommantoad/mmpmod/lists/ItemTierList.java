@@ -9,6 +9,10 @@ public enum ItemTierList implements IItemTier
 {
 	vimionite(5.0f, 9.0f, 250, 3, 1, ModItems.vimion_shard);
 	
+	
+	
+	
+	
 	private float attackDamage, effiency;
 	private int durability, harvestLevel, enchantability;
 	private Item repairMaterial;

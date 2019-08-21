@@ -35,7 +35,7 @@ public class ModItems
 				vimionite_tome = new ItemVimioniteTome(new Item.Properties().group(Main.vimion)).setRegistryName(location("vimionite_tome")),
 				geologic_phaser = new ItemGeologicPhaser(new Item.Properties().group(Main.vimion).maxDamage(250)).setRegistryName(location("geologic_phaser")),
 				
-				vimionite_dagger = new ItemVimionDagger(ItemTierList.vimionite, 0, 10.0f, new Item.Properties().group(Main.vimion)).setRegistryName(location("vimionite_dagger")),
+				vimionite_dagger = new ItemVimionDagger(ItemTierList.vimionite, 0, -0.6f, new Item.Properties().group(Main.vimion)).setRegistryName(location("vimionite_dagger")),
 				
 				vimion_block = new BlockItem(ModBlocks.vimion_block, new Item.Properties().group(Main.vimion)).setRegistryName(location("vimion_block")),
 				concealed_vimionite_ore = new BlockItem(ModBlocks.concealed_vimionite_ore, new Item.Properties().group(Main.vimion)).setRegistryName(location("concealed_vimionite_ore")),
