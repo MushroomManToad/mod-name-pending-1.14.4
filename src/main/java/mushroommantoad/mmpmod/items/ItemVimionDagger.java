@@ -2,18 +2,18 @@ package mushroommantoad.mmpmod.items;
 
 import java.util.Random;
 
-import mushroommantoad.mmpmod.init.ModBlocks;
 import mushroommantoad.mmpmod.init.ModItems;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.PigEntity;
+import net.minecraft.entity.passive.RabbitEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.SwordItem;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ActionResultType;
 
-@SuppressWarnings("unused")
 public class ItemVimionDagger extends SwordItem
 {
 
@@ -24,42 +24,34 @@ public class ItemVimionDagger extends SwordItem
 	
 	public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) 
 	{
-		/*
 		if(!attacker.getEntityWorld().isRemote)
 		if(!target.isAlive())
 		{
-			if(Math.random() < 0.05)
+			if(Math.random() < 0.1)
 			{
-				ItemEntity argonite = new ItemEntity(attacker.getEntityWorld(), target.posX, target.posY, target.posZ, new ItemStack(ModItems.vimion_shard, 1));
-				attacker.getEntityWorld().addEntity(argonite);
 				
+				ItemEntity drop = null;
+				if(target instanceof SheepEntity) drop = new ItemEntity(attacker.getEntityWorld(), target.posX, target.posY, target.posZ, new ItemStack(ModItems.sheep_spirit, 1));
+				if(target instanceof CowEntity) drop = new ItemEntity(attacker.getEntityWorld(), target.posX, target.posY, target.posZ, new ItemStack(ModItems.cow_spirit, 1));
+				if(target instanceof PigEntity) drop = new ItemEntity(attacker.getEntityWorld(), target.posX, target.posY, target.posZ, new ItemStack(ModItems.pig_spirit, 1));
+				if(target instanceof RabbitEntity) drop = new ItemEntity(attacker.getEntityWorld(), target.posX, target.posY, target.posZ, new ItemStack(ModItems.rabbit_spirit, 1));
+				if(target instanceof ChickenEntity) drop = new ItemEntity(attacker.getEntityWorld(), target.posX, target.posY, target.posZ, new ItemStack(ModItems.chicken_spirit, 1));
+				
+				
+				if(drop != null) 
+				{
+					attacker.getEntityWorld().addEntity(drop);
+					stack.attemptDamageItem(25, new Random(), null);
+				}
+				
+				/*
 				CompoundNBT nbt = stack.getTag();
 				if(nbt == null) nbt = new CompoundNBT();
 				nbt.putBoolean("active", true);
 				stack.setTag(nbt);
+				*/
 			}
 		}
-		*/
 		return super.hitEntity(stack, target, attacker);
 	}
-	
-	/*
-	   public ActionResultType onItemUse(ItemUseContext context)
-	   {
-		   if(!context.getWorld().isRemote)
-		   {
-			   if(context.getWorld().getBlockState(context.getPos()).getBlock() == ModBlocks.argonite_ore)
-			   {
-				   context.getWorld().setBlockState(context.getPos(), ModBlocks.argonite_block.getDefaultState());
-				   context.getItem().attemptDamageItem(1, new Random(), null);
-				   return ActionResultType.SUCCESS;
-			   }
-			   else return ActionResultType.FAIL;
-		   }
-		   else
-		   {
-			   return ActionResultType.FAIL;
-		   }
-	   }
-	*/
 }

@@ -1,11 +1,19 @@
 {
 	"item.vimion.vimion_shard": "Vimion Shard",
+	"item.vimion.energized_vimion": "Energized Vimion Gemstone",
 	"item.vimion.vimion_gemstone": "Vimion Gemstone",
 	"item.vimion.vimionite_dagger": "Vimionite Dagger",
-	"item.vimion.vimionite_tome": "Vimionite Tome",
+	"item.vimion.vimionic_tome": "Vimionic Tome",
 	"item.vimion.geologic_phaser": "Geologic Phaser",
 	
+	"item.vimion.sheep_spirit": "Sheep Spirit",
+	"item.vimion.cow_spirit": "Cow Spirit",
+	"item.vimion.pig_spirit": "Pig Spirit",
+	"item.vimion.rabbit_spirit": "Rabbit Spirit",
+	"item.vimion.chicken_spirit": "Chicken Spirit",
+	
 	"block.vimion.vimion_block": "Block of Vimion",
+	"block.vimion.vimion_cluster": "Vimionite Cluster",
 	"block.vimion.concealed_vimionite_ore": "Energetic Stone",
 	"block.vimion.vimionite_ore": "Vimionite Ore",
 	

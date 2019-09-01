@@ -28,26 +28,8 @@
               "name": "vimion:vimionite_ore"
             },
             {
-              "type": "minecraft:item",
-              "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": {
-                    "min": 1.0,
-                    "max": 4.0,
-                    "type": "minecraft:uniform"
-                  }
-                },
-                {
-                  "function": "minecraft:apply_bonus",
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:uniform_bonus_count",
-                  "parameters": {
-                    "bonusMultiplier": 1
-                  }
-                }
-              ],
-              "name": "vimion:vimion_shard"
+              "type": "minecraft:loot_table",
+              "name": "vimion:blocks/vimionite_ore_drops"
             }
           ]
         }
