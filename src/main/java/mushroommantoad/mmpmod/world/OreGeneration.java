@@ -17,6 +17,10 @@ public class OreGeneration
 		for(Biome biome : ForgeRegistries.BIOMES)
 		{
 			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.concealed_vimionite_ore.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(16, 5, 0, 16)));
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.concealed_necrionite_ore.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 5, 0, 16)));
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.concealed_solarionite_ore.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 5, 0, 16)));
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.concealed_nihilionite_ore.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 5, 0, 16)));
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.concealed_expionite_ore.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 5, 0, 16)));
 		}
 	}
 }

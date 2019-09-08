@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -42,14 +43,15 @@ public class ItemVimionDagger extends SwordItem
 				{
 					attacker.getEntityWorld().addEntity(drop);
 					stack.attemptDamageItem(25, new Random(), null);
+					if(stack.getMaxDamage() - stack.getDamage() < 0)
+					{
+					      stack.damageItem(2, attacker, (func) -> {
+					    	  func.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+					       });
+					      
+					      stack.shrink(1);
+					}
 				}
-				
-				/*
-				CompoundNBT nbt = stack.getTag();
-				if(nbt == null) nbt = new CompoundNBT();
-				nbt.putBoolean("active", true);
-				stack.setTag(nbt);
-				*/
 			}
 		}
 		return super.hitEntity(stack, target, attacker);

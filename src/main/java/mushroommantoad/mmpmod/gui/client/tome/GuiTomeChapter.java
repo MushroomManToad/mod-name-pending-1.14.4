@@ -3,6 +3,10 @@ package mushroommantoad.mmpmod.gui.client.tome;
 import com.mojang.blaze3d.platform.GlStateManager;
 
 import mushroommantoad.mmpmod.Main;
+import mushroommantoad.mmpmod.gui.client.tome.pages.PagesExpion;
+import mushroommantoad.mmpmod.gui.client.tome.pages.PagesNecrion;
+import mushroommantoad.mmpmod.gui.client.tome.pages.PagesNihilion;
+import mushroommantoad.mmpmod.gui.client.tome.pages.PagesSolarion;
 import mushroommantoad.mmpmod.gui.client.tome.pages.PagesVimion;
 import net.minecraft.util.ResourceLocation;
 
@@ -28,10 +32,10 @@ public class GuiTomeChapter
 	public void setPage()
 	{
 		if(name == "vimion") page = PagesVimion.getPage(tome, page_number);
-		//if(name == "necrion") pages = MasterPages.addNecrionPages();
-		//if(name == "solarion") pages = MasterPages.addSolarionPages();
-		//if(name == "nihilion") pages = MasterPages.addNihilionPages();
-		//if(name == "expion") pages = MasterPages.addExpionPages();
+		if(name == "necrion") page = PagesNecrion.getPage(tome, page_number);
+		if(name == "solarion") page = PagesSolarion.getPage(tome, page_number);
+		if(name == "nihilion") page = PagesNihilion.getPage(tome, page_number);
+		if(name == "expion") page = PagesExpion.getPage(tome, page_number);
 	}
 	
 	public void drawBackground()
@@ -51,5 +55,10 @@ public class GuiTomeChapter
 	public void drawHoverObjects(int mouseX, int mouseY)
 	{
 		page.drawAllHoverObjects(mouseX, mouseY);
+	}
+	
+	public String getName()
+	{
+		return name;
 	}
 }

@@ -29,7 +29,7 @@
             },
             {
               "type": "minecraft:loot_table",
-              "name": "vimion:blocks/vimionite_ore_drops"
+              "name": "vimion:blocks/drops/vimionite_ore_drops"
             }
           ]
         }

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import mushroommantoad.mmpmod.init.ModBlocks;
 import mushroommantoad.mmpmod.util.MushroomsMathUtil;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.particles.ParticleTypes;
@@ -42,11 +43,31 @@ public class ItemGeologicPhaser extends Item
 				context.getWorld().setBlockState(context.getPos(), ModBlocks.vimionite_ore.getDefaultState());
 				context.getItem().attemptDamageItem(1, new Random(), null);
 				
+				if(context.getItem().getMaxDamage() - context.getItem().getDamage() < 0)
+				{
+					context.getItem().damageItem(2, context.getPlayer(), (p_220039_0_) -> {
+				          p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+				       });
+				      
+					context.getItem().shrink(1);
+				}
+				
 				return ActionResultType.SUCCESS;
 			}
 			else 
 			{
-				if(new Random().nextInt(10) < 1) context.getItem().attemptDamageItem(1, new Random(), null);
+				if(new Random().nextInt(10) < 1) 
+				{
+					context.getItem().attemptDamageItem(1, new Random(), null);
+					if(context.getItem().getMaxDamage() - context.getItem().getDamage() < 0)
+					{
+						context.getItem().damageItem(2, context.getPlayer(), (p_220039_0_) -> {
+					          p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+					       });
+					      
+						context.getItem().shrink(1);
+					}
+				}
 				return ActionResultType.SUCCESS;
 			}
 		}

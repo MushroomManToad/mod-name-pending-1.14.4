@@ -2,9 +2,15 @@ package mushroommantoad.mmpmod.gui.client.tome;
 
 import java.util.ArrayList;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+
 import mushroommantoad.mmpmod.Main;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.Widget;
+import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.client.gui.widget.button.Button.IPressable;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
@@ -22,10 +28,14 @@ public class GuiTome extends Screen
     public int guiTop;
     protected PlayerEntity player;
     protected GuiTomeChapter chapter;
+    protected GuiTomeTabManager tabManager;
+    
+    int mousePosX = 0;
+    int mousePosY = 0;
     
     public ItemRenderer iR = itemRenderer;
     
-    public ArrayList<GuiTomeChapter> chapters = new ArrayList<>();
+    public TabHandlingButton tabHandler;
 	   
 	public GuiTome(PlayerEntity player) 
 	{
@@ -44,6 +54,11 @@ public class GuiTome extends Screen
 	    this.guiTop = (this.height - this.ySize) / 2;
 	    chapter = new GuiTomeChapter(this, "vimion");
 	    chapter.setPage();
+	    tabManager = new GuiTomeTabManager(this);
+	    
+		this.buttons.clear();
+		this.tabHandler = this.addButton(new TabHandlingButton(this.guiLeft - 32, this.guiTop, 32, this.ySize, " ", (p_213029_1_) -> { tabManager.handleClickEvent(mousePosX, mousePosY); }));
+	    
 		super.init();
 	}
 	
@@ -52,9 +67,13 @@ public class GuiTome extends Screen
 	@Override
 	public void render(int mouseX, int mouseY, float partialTicks) 
 	{
+		this.mousePosX = mouseX;
+		this.mousePosY = mouseY;
+		
 		this.renderBackground();
 		chapter.drawBackground();
 		chapter.drawHoverObjects(mouseX, mouseY);
+		tabManager.tabTick(mouseX, mouseY);
 		super.render(mouseX, mouseY, partialTicks);
 	}
 	
@@ -67,4 +86,44 @@ public class GuiTome extends Screen
 	{
 		return font;
 	}
+	
+	@OnlyIn(Dist.CLIENT)
+    static class TabHandlingButton extends Button
+    {
+		private boolean locked = false;
+		
+		public TabHandlingButton(int xPos, int yPos, int width, int height, String text, IPressable onPress) 
+		{
+			super(xPos, yPos, width, height, text, onPress);
+		}
+		
+		@Override
+		public void renderButton(int p_renderButton_1_, int p_renderButton_2_, float p_renderButton_3_) 
+		{
+			
+		}
+		
+		@Override
+		public boolean mouseClicked(double p_mouseClicked_1_, double p_mouseClicked_3_, int p_mouseClicked_5_) 
+		{
+			if (this.active && this.visible) 
+			{
+				if (this.isValidClickButton(p_mouseClicked_5_)) 
+				{
+		            boolean flag = this.clicked(p_mouseClicked_1_, p_mouseClicked_3_);
+		            if (flag) 
+		            {
+		            	this.onClick(p_mouseClicked_1_, p_mouseClicked_3_);
+		            	return true;
+		            }
+				}
+
+				return false;
+			} 
+			else 
+			{
+				return false;
+			}
+		}
+    }
 }

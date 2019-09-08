@@ -7,7 +7,8 @@ import net.minecraft.item.crafting.Ingredient;
 
 public enum ItemTierList implements IItemTier
 {
-	vimionite(5.0f, 9.0f, 250, 3, 1, ModItems.vimion_shard);
+	vimionite(5.0f, 9.0f, 400, 3, 1, ModItems.vimion_shard),
+	nihilionite(8.0f, 10.0f, 400, 3, 1, ModItems.nihilion_shard);
 	
 	
 	

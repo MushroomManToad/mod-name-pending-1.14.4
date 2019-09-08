@@ -15,7 +15,7 @@ public class ItemGroupVimion extends ItemGroup
 	@Override
 	public ItemStack createIcon() 
 	{
-		return new ItemStack(ModItems.vimion_shard);
+		return new ItemStack(ModItems.vimion_gemstone);
 	}
 	
 }

@@ -38,7 +38,6 @@ public class GuiTomeHoverObject
 		this.wrapWidth = this.tome.guiLeft + this.tome.xSize - this.tome.guiLeft - this.x - 50;
 	}
 	
-	// TODO
 	// Draws the Icon
 	public void drawIcon()
 	{
@@ -55,7 +54,6 @@ public class GuiTomeHoverObject
 	    GlStateManager.scaled(16, 16, 0);
 	}
 	
-	// TODO
 	// Draws the string if it's being hovered over
 	public boolean checkForHover(int mouseX, int mouseY)
 	{
@@ -80,7 +78,22 @@ public class GuiTomeHoverObject
 	{
 		drawHoverBackground();
 		drawHoverText();
-		drawIcon();
+		drawHoverIcon();
+	}
+	
+	public void drawHoverIcon()
+	{
+		GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+		tome.getMinecraft().getTextureManager().bindTexture(VIMION_TOME);
+		
+	    int i = tome.guiLeft;
+	    int j = (tome.height - tome.ySize) / 2;
+	    tome.blit(i + x, j + y, 0, 200, 28, 28);
+	    
+	    tome.getMinecraft().getTextureManager().bindTexture(icon);
+	    GlStateManager.scaled(0.0625, 0.0625, 0);
+	    tome.blit(16 * (i + x) + 96, 16 * (j + y) + 96, 0, 0, 256, 256);
+	    GlStateManager.scaled(16, 16, 0);
 	}
 	
 	public void drawHoverBackground()
@@ -124,6 +137,10 @@ public class GuiTomeHoverObject
 	{
 		int titleColor = 16763136;
 		if(tome.chapter.name == "vimion") titleColor = 9626932;
+		if(tome.chapter.name == "necrion") titleColor = 6637703;
+		if(tome.chapter.name == "solarion") titleColor = 16579401;
+		if(tome.chapter.name == "nihilion") titleColor = 16537929;
+		if(tome.chapter.name == "expion") titleColor = 4821756;
 		tome.drawString(tome.getFontRenderer(), this.name, tome.guiLeft + x + 30, tome.guiTop + y + 4, titleColor);
 		
 		for(int i = 0; i < findOptimalLines(hover, wrapWidth).size(); i++)

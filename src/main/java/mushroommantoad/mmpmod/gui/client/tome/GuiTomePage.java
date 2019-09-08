@@ -18,6 +18,9 @@ public class GuiTomePage
 		for(GuiTomeHoverObject h : ho)
 		{
 			h.drawIcon();
+		}
+		for(GuiTomeHoverObject h : ho)
+		{
 			h.checkForHover(mouseX, mouseY);
 		}
 	}

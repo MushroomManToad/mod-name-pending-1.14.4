@@ -3,9 +3,9 @@ loaderVersion="[28,)" #mandatory (26 is current forge version)
 [[mods]] #mandatory
 modId="vimion" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="DEV WEEK 01" #mandatory
+version="DEV WEEK 03" #mandatory
 displayName="Vimion Mod" #mandatory
-credits="Thanks Harry, Cadiboo, RedstoneTim, Tebreca, andrew0030, and many others from the Discord server!" #optional
+credits="Thanks Harry, Cadiboo, RedstoneTim, Tebreca, andrew0030, and many others from the Discord server for getting me started with modding!" #optional
 authors="MushroomManToad" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
