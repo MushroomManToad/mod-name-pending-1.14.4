@@ -5,11 +5,13 @@ import org.apache.logging.log4j.Logger;
 
 import mushroommantoad.mmpmod.init.ModBlocks;
 import mushroommantoad.mmpmod.init.ModItems;
+import mushroommantoad.mmpmod.init.ModTileEntities;
 import mushroommantoad.mmpmod.itemgroups.ItemGroupVimion;
 import mushroommantoad.mmpmod.world.OreGeneration;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -56,6 +58,11 @@ public class Main {
 		@SubscribeEvent
 		public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 			ModBlocks.registerAll(event, logger);
+		}
+		
+		@SubscribeEvent
+		public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event)	{
+			ModTileEntities.registerAll(event, logger);
 		}
 	}
 }

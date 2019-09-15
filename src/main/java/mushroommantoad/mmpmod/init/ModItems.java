@@ -39,6 +39,7 @@ public class ModItems
 	public static Item advanced_geologic_phaser;
 	
 	public static Item vimionite_dagger;
+	//public static Item solarionite_pickaxe;
 	public static Item nihilionite_axe;
 	
 	public static Item vimion_block;
@@ -56,6 +57,8 @@ public class ModItems
 	public static Item expion_block;
 	public static Item concealed_expionite_ore;
 	public static Item expionite_ore;
+	
+	public static Item expionite_crate;
 	
 	public static Item sheep_spirit;
 	public static Item cow_spirit;
@@ -94,7 +97,10 @@ public class ModItems
 				chicken_spirit = new ItemSpirit(new Item.Properties().group(Main.vimion)).setRegistryName(location("chicken_spirit")),
 				
 				vimionite_dagger = new ItemVimionDagger(ItemTierList.vimionite, 0, -0.6f, new Item.Properties().group(Main.vimion)).setRegistryName(location("vimionite_dagger")),
+				//solarionite_pickaxe = new ItemSolarionPickaxe(ItemTierList.solarionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("solarionite_pickaxe")),
 				nihilionite_axe = new ItemNihilionAxe(ItemTierList.nihilionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("nihilionite_axe")),
+				
+				expionite_crate = new BlockItem(ModBlocks.expionite_crate, new Item.Properties().group(Main.vimion)).setRegistryName(location("expionite_block")),
 				
 				vimion_block = new BlockItem(ModBlocks.vimion_block, new Item.Properties().group(Main.vimion)).setRegistryName(location("vimion_block")),
 				concealed_vimionite_ore = new BlockItem(ModBlocks.concealed_vimionite_ore, new Item.Properties().group(Main.vimion)).setRegistryName(location("concealed_vimionite_ore")),
