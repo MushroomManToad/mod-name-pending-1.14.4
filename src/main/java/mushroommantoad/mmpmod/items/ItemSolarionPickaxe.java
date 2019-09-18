@@ -8,21 +8,20 @@ import javax.annotation.Nullable;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowerBlock;
 import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.LogBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.monster.ShulkerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -50,15 +49,6 @@ public class ItemSolarionPickaxe extends PickaxeItem
 			else
 			{
 				nbt.putBoolean("active", false);
-				AxisAlignedBB checkBox = new AxisAlignedBB(playerIn.getPosition().add(-100, -100, -100), playerIn.getPosition().add(100, 100, 100));
-				List<ShulkerEntity> shulkers = worldIn.getEntitiesWithinAABB(ShulkerEntity.class, checkBox);
-				for(ShulkerEntity s : shulkers)
-				{
-					if(s.getTags().contains("Solarion"))
-					{
-						s.setPosition(s.getPosition().getX(), -60, s.getPosition().getY());
-					}
-				}
 			}
 		}
 		else
@@ -70,15 +60,6 @@ public class ItemSolarionPickaxe extends PickaxeItem
 			if(nbt.getInt("charge") <= 0)
 			{
 				nbt.putBoolean("active", false);
-				AxisAlignedBB checkBox = new AxisAlignedBB(playerIn.getPosition().add(-100, -100, -100), playerIn.getPosition().add(100, 100, 100));
-				List<ShulkerEntity> shulkers = worldIn.getEntitiesWithinAABB(ShulkerEntity.class, checkBox);
-				for(ShulkerEntity s : shulkers)
-				{
-					if(s.getTags().contains("Solarion"))
-					{
-						s.setPosition(s.getPosition().getX(), -60, s.getPosition().getY());
-					}
-				}
 			}
 		}
 		else
@@ -102,6 +83,34 @@ public class ItemSolarionPickaxe extends PickaxeItem
 		CompoundNBT nbt = stack.getTag();
 		if(nbt == null) nbt = new CompoundNBT();
 		
+		if(worldIn.isRemote)
+		{
+			if(nbt.getBoolean("active") && (nbt.getInt("tick") == 19 || nbt.getInt("tick") == 9))
+			{
+				int r = 0;
+				if(nbt.getInt("charge") >= 1599) r = 8;
+				else r = 1 + (int) (nbt.getInt("charge") / 200);
+				BlockPos playerPos = entityIn.getPosition().add(0, 1, 0);
+				if(getClosestOre(getOreBlocks(worldIn, entityIn.getPosition(), r), playerPos) != null)
+				{
+					BlockPos pos = getClosestOre(getOreBlocks(worldIn, entityIn.getPosition(), r), playerPos);
+					double x = entityIn.posX;
+					double y = entityIn.posY + 1;
+					double z = entityIn.posZ;
+					double x2 = pos.getX() + 0.5;
+					double y2 = pos.getY() + 0.5;
+					double z2 = pos.getZ() + 0.5;
+					double xInterval = (x2 - x) / 16;
+					double yInterval = (y2 - y) / 16;
+					double zInterval = (z2 - z) / 16;
+					for(int i = 0; i < 16; i++)
+					{
+						worldIn.addParticle(ParticleTypes.FLAME, x + (xInterval * i), y + (yInterval * i), z + (zInterval * i), 0, 0, 0);
+					}
+				}
+			}
+		}
+		
 		if(!worldIn.isRemote)
 		{
 			if(!nbt.contains("active")) nbt.putBoolean("active", false);
@@ -120,6 +129,11 @@ public class ItemSolarionPickaxe extends PickaxeItem
 				{
 					active = false;
 				}
+				if(entityIn instanceof PlayerEntity)
+				{
+					PlayerEntity playerIn = (PlayerEntity) entityIn;
+					playerIn.sendStatusMessage(new StringTextComponent("Charge: " + TextFormatting.YELLOW + nbt.getInt("charge") + "/2500"), true);
+				}
 			}
 			else
 			{
@@ -137,29 +151,7 @@ public class ItemSolarionPickaxe extends PickaxeItem
 				{
 					if(nbt.getBoolean("active"))
 					{
-						AxisAlignedBB checkBox = new AxisAlignedBB(entityIn.getPosition().add(-100, -100, -100), entityIn.getPosition().add(18, 18, 18));
-						List<ShulkerEntity> shulkers = worldIn.getEntitiesWithinAABB(ShulkerEntity.class, checkBox);
-						for(ShulkerEntity s : shulkers)
-						{
-							if(s.getTags().contains("Solarion"))
-							{
-								s.setPosition(s.getPosition().getX(), -80, s.getPosition().getY());
-							}
-						}
-						int r = 0;
-						if(nbt.getInt("charge") >= 1599) r = 8;
-						else r = 1 + (int) (nbt.getInt("charge") / 200);
-						for(BlockPos pos : getOreBlocks(worldIn, entityIn.getPosition(), r))
-						{
-							ShulkerEntity shulker = new ShulkerEntity(EntityType.SHULKER, worldIn);
-							shulker.setNoAI(true);
-							shulker.addPotionEffect(new EffectInstance(Effects.GLOWING, 100000, 0, true, false));
-							shulker.setInvisible(true);
-							shulker.setPosition(pos.getX(), pos.getY(), pos.getZ());
-							shulker.addTag("Solarion");
-							shulker.setInvulnerable(true);
-							worldIn.addEntity(shulker);
-						}
+						
 					}
 				}
 			}
@@ -212,6 +204,27 @@ public class ItemSolarionPickaxe extends PickaxeItem
 	                		b == Blocks.DIRT ||
 	                		b == Blocks.GRAVEL ||
 	                		b == Blocks.SAND ||
+	                		b == Blocks.SANDSTONE ||
+	    	                b == Blocks.RED_SAND ||
+	    	                b == Blocks.RED_SANDSTONE ||
+	                		b == Blocks.BEDROCK ||
+	                		b instanceof FlowerBlock ||
+	                		b == Blocks.GRASS ||
+	                		b == Blocks.TALL_GRASS ||
+	                		b == Blocks.GRASS_BLOCK ||
+	                		b == Blocks.GRASS_PATH ||
+	                		b == Blocks.DEAD_BUSH ||
+	                		b == Blocks.CACTUS ||
+	                		b instanceof LogBlock ||
+	                		b == Blocks.LILY_PAD ||
+	                		b == Blocks.KELP_PLANT ||
+	                		b == Blocks.SUGAR_CANE ||
+	                		b == Blocks.KELP ||
+	                		b == Blocks.SEAGRASS ||
+	                		b == Blocks.TALL_SEAGRASS ||
+	                		b == Blocks.NETHERRACK ||
+	                		b == Blocks.END_STONE ||
+	                		b instanceof LeavesBlock ||
 	                		b instanceof FlowingFluidBlock) {} 
 	                	else localOres.add(pooledMutableBlockPos.toImmutable());
 	                }
@@ -219,6 +232,29 @@ public class ItemSolarionPickaxe extends PickaxeItem
 	        }
 	    }
 	    return localOres;
+	}
+	
+	public BlockPos getClosestOre(List<BlockPos> pos, BlockPos playerPos)
+	{
+		if(pos.size() <= 0) return null;
+		else if(pos.size() == 1) return pos.get(0);
+		else
+		{
+			BlockPos pos1 = pos.get(0);
+			for(BlockPos pos2 : pos)
+			{
+				if(getDistance(pos2, playerPos) < getDistance(pos1, playerPos))
+				{
+					pos1 = pos2;
+				}
+			}
+			return pos1;
+		}
+	}
+	
+	public double getDistance(BlockPos block, BlockPos player)
+	{
+		return Math.sqrt(Math.pow((block.getX() - player.getX()), 2) + Math.pow((block.getY() - player.getY()), 2) + Math.pow((block.getZ() - player.getZ()), 2));
 	}
 	
    @OnlyIn(Dist.CLIENT)

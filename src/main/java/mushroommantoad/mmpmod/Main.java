@@ -3,12 +3,16 @@ package mushroommantoad.mmpmod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import mushroommantoad.mmpmod.entities.VimionRenderRegistry;
 import mushroommantoad.mmpmod.init.ModBlocks;
+import mushroommantoad.mmpmod.init.ModEntities;
 import mushroommantoad.mmpmod.init.ModItems;
 import mushroommantoad.mmpmod.init.ModTileEntities;
 import mushroommantoad.mmpmod.itemgroups.ItemGroupVimion;
+import mushroommantoad.mmpmod.util.MushroomsEventHandler;
 import mushroommantoad.mmpmod.world.OreGeneration;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.tileentity.TileEntityType;
@@ -35,6 +39,8 @@ public class Main {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 
 		MinecraftForge.EVENT_BUS.register(this);
+		
+		MinecraftForge.EVENT_BUS.register(new MushroomsEventHandler());
 	}
 
 	// PreInit
@@ -45,6 +51,7 @@ public class Main {
 
 	// PreInit
 	private void clientRegistries(final FMLClientSetupEvent event) {
+		VimionRenderRegistry.registerEntityRenders();
 		logger.info("Client Registries Added");
 	}
 
@@ -63,6 +70,11 @@ public class Main {
 		@SubscribeEvent
 		public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event)	{
 			ModTileEntities.registerAll(event, logger);
+		}
+		
+		@SubscribeEvent
+		public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
+			ModEntities.registerAll(event, logger);
 		}
 	}
 }

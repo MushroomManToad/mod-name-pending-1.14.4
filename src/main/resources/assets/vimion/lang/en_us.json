@@ -15,7 +15,10 @@
 	"item.vimion.energized_expion": "Energized Expion Gemstone",
 	"item.vimion.expion_gemstone": "Expion Gemstone",
 	
+	"item.vimion.spectral_sheep_spawn_egg": "Spectral Sheep Spawn Egg",
+	
 	"item.vimion.vimionite_dagger": "Vimionite Dagger",
+	"item.vimion.solarionite_pickaxe": "Solarionite Pickaxe",
 	"item.vimion.nihilionite_axe": "Nihilionite Axe",
 	"item.vimion.vimionic_tome": "Vimionic Tome",
 	"item.vimion.geologic_phaser": "Geologic Phaser",
@@ -42,6 +45,10 @@
 	"block.vimion.expion_block": "Block of Expion",
 	"block.vimion.concealed_expionite_ore": "Energetic Stone",
 	"block.vimion.expionite_ore": "Expionite Ore",
+	
+	"block.vimion.expionite_crate": "Expionite Crate",
+	
+	"entity.vimion.spectral_sheep": "Spectral Sheep",
 	
 	"itemGroup.vimion": "Vimion"
 }

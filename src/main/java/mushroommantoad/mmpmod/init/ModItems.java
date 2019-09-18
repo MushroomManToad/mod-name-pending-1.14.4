@@ -7,6 +7,7 @@ import mushroommantoad.mmpmod.items.ItemAdvancedGeologicPhaser;
 import mushroommantoad.mmpmod.items.ItemEnergizedGemstone;
 import mushroommantoad.mmpmod.items.ItemGeologicPhaser;
 import mushroommantoad.mmpmod.items.ItemNihilionAxe;
+import mushroommantoad.mmpmod.items.ItemSolarionPickaxe;
 import mushroommantoad.mmpmod.items.ItemSpirit;
 import mushroommantoad.mmpmod.items.ItemVimionDagger;
 import mushroommantoad.mmpmod.items.ItemVimioniteTome;
@@ -39,7 +40,7 @@ public class ModItems
 	public static Item advanced_geologic_phaser;
 	
 	public static Item vimionite_dagger;
-	//public static Item solarionite_pickaxe;
+	public static Item solarionite_pickaxe;
 	public static Item nihilionite_axe;
 	
 	public static Item vimion_block;
@@ -97,7 +98,7 @@ public class ModItems
 				chicken_spirit = new ItemSpirit(new Item.Properties().group(Main.vimion)).setRegistryName(location("chicken_spirit")),
 				
 				vimionite_dagger = new ItemVimionDagger(ItemTierList.vimionite, 0, -0.6f, new Item.Properties().group(Main.vimion)).setRegistryName(location("vimionite_dagger")),
-				//solarionite_pickaxe = new ItemSolarionPickaxe(ItemTierList.solarionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("solarionite_pickaxe")),
+				solarionite_pickaxe = new ItemSolarionPickaxe(ItemTierList.solarionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("solarionite_pickaxe")),
 				nihilionite_axe = new ItemNihilionAxe(ItemTierList.nihilionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("nihilionite_axe")),
 				
 				expionite_crate = new BlockItem(ModBlocks.expionite_crate, new Item.Properties().group(Main.vimion)).setRegistryName(location("expionite_block")),
@@ -119,10 +120,12 @@ public class ModItems
 				expionite_ore = new BlockItem(ModBlocks.expionite_ore, new Item.Properties().group(Main.vimion)).setRegistryName(location("expionite_ore"))
 		);
 		
+		ModEntities.registerEntitySpawnEggs(event);
+		
 		logger.info("Items Registered");
 	}
 	
-	private static ResourceLocation location(String name)
+	public static ResourceLocation location(String name)
 	{
 		return new ResourceLocation(Main.modid, name);
 	}
