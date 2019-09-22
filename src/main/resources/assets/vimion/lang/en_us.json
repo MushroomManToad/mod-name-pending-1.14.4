@@ -16,6 +16,10 @@
 	"item.vimion.expion_gemstone": "Expion Gemstone",
 	
 	"item.vimion.spectral_sheep_spawn_egg": "Spectral Sheep Spawn Egg",
+	"item.vimion.spectral_cow_spawn_egg": "Spectral Cow Spawn Egg",
+	"item.vimion.spectral_chicken_spawn_egg": "Spectral Chicken Spawn Egg",
+	"item.vimion.spectral_pig_spawn_egg": "Spectral Pig Spawn Egg",
+	"item.vimion.spectral_rabbit_spawn_egg": "Spectral Rabbit Spawn Egg",
 	
 	"item.vimion.vimionite_dagger": "Vimionite Dagger",
 	"item.vimion.solarionite_pickaxe": "Solarionite Pickaxe",
@@ -46,9 +50,14 @@
 	"block.vimion.concealed_expionite_ore": "Energetic Stone",
 	"block.vimion.expionite_ore": "Expionite Ore",
 	
+	"block.vimion.necrionite_summoner": "Necrionite Summoner",
 	"block.vimion.expionite_crate": "Expionite Crate",
 	
 	"entity.vimion.spectral_sheep": "Spectral Sheep",
+	"entity.vimion.spectral_cow": "Spectral Cow",
+	"entity.vimion.spectral_chicken": "Spectral Chicken",
+	"entity.vimion.spectral_pig": "Spectral Pig",
+	"entity.vimion.spectral_rabbit": "Spectral Rabbit",
 	
 	"itemGroup.vimion": "Vimion"
 }

@@ -1,5 +1,13 @@
 package mushroommantoad.mmpmod.entities;
 
+import mushroommantoad.mmpmod.entities.spectral.chicken.SpectralChickenEntity;
+import mushroommantoad.mmpmod.entities.spectral.chicken.SpectralChickenRenderer;
+import mushroommantoad.mmpmod.entities.spectral.cow.SpectralCowEntity;
+import mushroommantoad.mmpmod.entities.spectral.cow.SpectralCowRenderer;
+import mushroommantoad.mmpmod.entities.spectral.pig.SpectralPigEntity;
+import mushroommantoad.mmpmod.entities.spectral.pig.SpectralPigRenderer;
+import mushroommantoad.mmpmod.entities.spectral.rabbit.SpectralRabbitEntity;
+import mushroommantoad.mmpmod.entities.spectral.rabbit.SpectralRabbitRenderer;
 import mushroommantoad.mmpmod.entities.spectral.sheep.SpectralSheepEntity;
 import mushroommantoad.mmpmod.entities.spectral.sheep.SpectralSheepRenderer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -12,5 +20,9 @@ public class VimionRenderRegistry
 	public static void registerEntityRenders()
 	{
 		RenderingRegistry.registerEntityRenderingHandler(SpectralSheepEntity.class, new SpectralSheepRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(SpectralCowEntity.class, new SpectralCowRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(SpectralChickenEntity.class, new SpectralChickenRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(SpectralPigEntity.class, new SpectralPigRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(SpectralRabbitEntity.class, new SpectralRabbitRenderer.RenderFactory());
 	}
 }

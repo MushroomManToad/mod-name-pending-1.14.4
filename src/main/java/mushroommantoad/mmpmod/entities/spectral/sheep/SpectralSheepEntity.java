@@ -1,11 +1,17 @@
 package mushroommantoad.mmpmod.entities.spectral.sheep;
 
+import java.util.List;
+
 import mushroommantoad.mmpmod.init.ModEntities;
+import mushroommantoad.mmpmod.init.ModSoundEvents;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.Pose;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -13,10 +19,21 @@ import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -56,9 +73,74 @@ public class SpectralSheepEntity extends CreatureEntity
 	@Override
 	protected void updateAITasks() 
 	{
-		System.out.println("Sheep AI");
 		this.sheepTimer = this.eatGrassGoal.getEatingGrassTimer();
 		super.updateAITasks();
+	}
+	
+	@Override
+	public boolean canDespawn(double distanceToClosestPlayer) 
+	{
+		return false;
+	}
+	
+	@Override
+	protected boolean processInteract(PlayerEntity player, Hand hand) 
+	{
+		ItemStack stack = player.getHeldItem(hand);
+		if(stack.getItem() == Items.WHEAT)
+		{
+			if(!this.world.isRemote)
+			{
+				stack.shrink(1);
+				List<MonsterEntity> entities = world.getEntitiesWithinAABB(MonsterEntity.class, new AxisAlignedBB(this.posX - 64, this.posY - 16, this.posZ - 64, this.posX + 64, this.posY + 16, this.posZ + 64));
+				for(MonsterEntity e : entities)
+				{
+					if(e.isEntityUndead())
+					{
+						e.setRevengeTarget(this);
+					}
+				}
+			}
+		}
+		return super.processInteract(player, hand);
+	}
+	
+	@Override
+	protected SoundEvent getAmbientSound() 
+	{
+		return ModSoundEvents.spectral_sheep_say;
+	}
+	
+	@Override
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) 
+	{
+		return ModSoundEvents.spectral_sheep_hurt;
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() 
+	{
+		return ModSoundEvents.spectral_sheep_death;
+	}
+
+	@Override
+	protected void playStepSound(BlockPos pos, BlockState blockIn) 
+	{
+		this.playSound(SoundEvents.ENTITY_SHEEP_STEP, 0.15F, 1.0F);
+	}
+	
+	@Override
+	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, ILivingEntityData spawnDataIn, CompoundNBT dataTag) 
+	{
+		List<MonsterEntity> entities = worldIn.getEntitiesWithinAABB(MonsterEntity.class, new AxisAlignedBB(this.posX - 64, this.posY - 64, this.posZ - 64, this.posX + 64, this.posY + 64, this.posZ + 64));
+		for(MonsterEntity e : entities)
+		{
+			if(e.isEntityUndead())
+			{
+				e.setRevengeTarget(this);
+			}
+		}
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
 	@Override
@@ -68,6 +150,7 @@ public class SpectralSheepEntity extends CreatureEntity
 		{
 			this.sheepTimer = Math.max(0, this.sheepTimer - 1);
 		}
+		super.livingTick();
 	}
 	
    @OnlyIn(Dist.CLIENT)
@@ -78,26 +161,26 @@ public class SpectralSheepEntity extends CreatureEntity
 		   this.sheepTimer = 40;
 	   } 
 	   else 
-	   {
+	   { 
 		   super.handleStatusUpdate(id);
 	   }
    }
 	
-	@OnlyIn(Dist.CLIENT)
-	public float getHeadRotationPointY(float p_70894_1_) 
-	{
-		if (this.sheepTimer <= 0) 
-		{
-			return 0.0F;
-		} 
-		else if (this.sheepTimer >= 4 && this.sheepTimer <= 36) 
-		{
-			return 1.0F;
-		} 
-		else 
-		{
-			return this.sheepTimer < 4 ? ((float)this.sheepTimer - p_70894_1_) / 4.0F : -((float)(this.sheepTimer - 40) - p_70894_1_) / 4.0F;
-		}
+   @OnlyIn(Dist.CLIENT)
+   public float getHeadRotationPointY(float p_70894_1_) 
+   {
+	   if (this.sheepTimer <= 0) 
+	   {
+		   return 0.0F;
+	   } 
+	   else if (this.sheepTimer >= 4 && this.sheepTimer <= 36) 
+	   {
+		   return 1.0F;
+	   } 
+	   else 
+	   {
+		   return this.sheepTimer < 4 ? ((float)this.sheepTimer - p_70894_1_) / 4.0F : -((float)(this.sheepTimer - 40) - p_70894_1_) / 4.0F;
+	   }
 	}
 
 	@OnlyIn(Dist.CLIENT)

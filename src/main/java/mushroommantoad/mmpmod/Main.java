@@ -7,6 +7,7 @@ import mushroommantoad.mmpmod.entities.VimionRenderRegistry;
 import mushroommantoad.mmpmod.init.ModBlocks;
 import mushroommantoad.mmpmod.init.ModEntities;
 import mushroommantoad.mmpmod.init.ModItems;
+import mushroommantoad.mmpmod.init.ModSoundEvents;
 import mushroommantoad.mmpmod.init.ModTileEntities;
 import mushroommantoad.mmpmod.itemgroups.ItemGroupVimion;
 import mushroommantoad.mmpmod.util.MushroomsEventHandler;
@@ -16,6 +17,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -57,6 +59,11 @@ public class Main {
 
 	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 	public static class RegistryEvents {
+		@SubscribeEvent
+		public static void registerSounds(final RegistryEvent.Register<SoundEvent> event) {
+			ModSoundEvents.registerAll(event, logger);
+		}
+		
 		@SubscribeEvent
 		public static void registerItems(final RegistryEvent.Register<Item> event) {
 			ModItems.registerAll(event, logger);

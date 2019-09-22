@@ -33,4 +33,5 @@ public class SpectralSheepModel extends QuadrupedModel<SpectralSheepEntity>
 		super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
 		this.headModel.rotateAngleX = this.headRotationAngleX;
 	}
+	
 }

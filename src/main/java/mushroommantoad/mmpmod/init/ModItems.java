@@ -59,6 +59,7 @@ public class ModItems
 	public static Item concealed_expionite_ore;
 	public static Item expionite_ore;
 	
+	public static Item necrionite_summoner;
 	public static Item expionite_crate;
 	
 	public static Item sheep_spirit;
@@ -101,7 +102,8 @@ public class ModItems
 				solarionite_pickaxe = new ItemSolarionPickaxe(ItemTierList.solarionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("solarionite_pickaxe")),
 				nihilionite_axe = new ItemNihilionAxe(ItemTierList.nihilionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("nihilionite_axe")),
 				
-				expionite_crate = new BlockItem(ModBlocks.expionite_crate, new Item.Properties().group(Main.vimion)).setRegistryName(location("expionite_block")),
+				expionite_crate = new BlockItem(ModBlocks.expionite_crate, new Item.Properties().group(Main.vimion)).setRegistryName(location("expionite_crate")),
+				necrionite_summoner = new BlockItem(ModBlocks.necrionite_summoner, new Item.Properties().group(Main.vimion)).setRegistryName(location("necrionite_summoner")),
 				
 				vimion_block = new BlockItem(ModBlocks.vimion_block, new Item.Properties().group(Main.vimion)).setRegistryName(location("vimion_block")),
 				concealed_vimionite_ore = new BlockItem(ModBlocks.concealed_vimionite_ore, new Item.Properties().group(Main.vimion)).setRegistryName(location("concealed_vimionite_ore")),

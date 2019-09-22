@@ -15,12 +15,13 @@ public class SpectralSheepRenderer extends MobRenderer<SpectralSheepEntity, Spec
 	public SpectralSheepRenderer(EntityRendererManager manager) 
 	{
 		super(manager, new SpectralSheepModel(), 0f);
+		this.addLayer(new SpectralSheepWoolLayer(this));
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(SpectralSheepEntity entity) 
 	{
-		return ModEntities.location("textures/entity/spectral_sheep.png");
+		return ModEntities.location("textures/entity/spectral/spectral_sheep.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<SpectralSheepEntity>
