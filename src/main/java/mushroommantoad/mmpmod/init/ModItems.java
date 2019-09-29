@@ -9,8 +9,11 @@ import mushroommantoad.mmpmod.items.ItemGeologicPhaser;
 import mushroommantoad.mmpmod.items.ItemNihilionAxe;
 import mushroommantoad.mmpmod.items.ItemSolarionPickaxe;
 import mushroommantoad.mmpmod.items.ItemSpirit;
+import mushroommantoad.mmpmod.items.ItemVimionBerries;
 import mushroommantoad.mmpmod.items.ItemVimionDagger;
+import mushroommantoad.mmpmod.items.ItemVimionShard;
 import mushroommantoad.mmpmod.items.ItemVimioniteTome;
+import mushroommantoad.mmpmod.items.util.VimionFoods;
 import mushroommantoad.mmpmod.lists.ItemTierList;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -59,6 +62,24 @@ public class ModItems
 	public static Item concealed_expionite_ore;
 	public static Item expionite_ore;
 	
+	public static Item berries_of_life;
+	public static Item berries_of_death;
+	public static Item berries_of_the_sun;
+	public static Item berries_of_annihilation;
+	public static Item berries_of_the_universe;
+	
+	public static Item berries_of_life_bush;
+	public static Item berries_of_death_bush;
+	public static Item berries_of_the_sun_bush;
+	public static Item berries_of_annihilation_bush;
+	public static Item berries_of_the_universe_bush;
+	
+	public static Item vimionic_grass_block;
+	public static Item necrionic_grass_block;
+	public static Item solarionic_grass_block;
+	public static Item nihilionic_grass_block;
+	public static Item expionic_grass_block;
+	
 	public static Item necrionite_summoner;
 	public static Item expionite_crate;
 	
@@ -72,19 +93,19 @@ public class ModItems
 	{
 		event.getRegistry().registerAll
 		(
-				vimion_shard = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("vimion_shard")),
+				vimion_shard = new ItemVimionShard(new Item.Properties().group(Main.vimion)).setRegistryName(location("vimion_shard")),
 				vimion_gemstone = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("vimion_gemstone")),
 				energized_vimion = new ItemEnergizedGemstone(new Item.Properties().group(Main.vimion)).setRegistryName(location("energized_vimion")),
-				necrion_shard = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("necrion_shard")),
+				necrion_shard = new ItemVimionShard(new Item.Properties().group(Main.vimion)).setRegistryName(location("necrion_shard")),
 				necrion_gemstone = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("necrion_gemstone")),
 				energized_necrion = new ItemEnergizedGemstone(new Item.Properties().group(Main.vimion)).setRegistryName(location("energized_necrion")),
-				solarion_shard = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("solarion_shard")),
+				solarion_shard = new ItemVimionShard(new Item.Properties().group(Main.vimion)).setRegistryName(location("solarion_shard")),
 				solarion_gemstone = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("solarion_gemstone")),
 				energized_solarion = new ItemEnergizedGemstone(new Item.Properties().group(Main.vimion)).setRegistryName(location("energized_solarion")),
-				nihilion_shard = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("nihilion_shard")),
+				nihilion_shard = new ItemVimionShard(new Item.Properties().group(Main.vimion)).setRegistryName(location("nihilion_shard")),
 				nihilion_gemstone = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("nihilion_gemstone")),
 				energized_nihilion = new ItemEnergizedGemstone(new Item.Properties().group(Main.vimion)).setRegistryName(location("energized_nihilion")),
-				expion_shard = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("expion_shard")),
+				expion_shard = new ItemVimionShard(new Item.Properties().group(Main.vimion)).setRegistryName(location("expion_shard")),
 				expion_gemstone = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("expion_gemstone")),
 				energized_expion = new ItemEnergizedGemstone(new Item.Properties().group(Main.vimion)).setRegistryName(location("energized_expion")),
 				
@@ -101,6 +122,24 @@ public class ModItems
 				vimionite_dagger = new ItemVimionDagger(ItemTierList.vimionite, 0, -0.6f, new Item.Properties().group(Main.vimion)).setRegistryName(location("vimionite_dagger")),
 				solarionite_pickaxe = new ItemSolarionPickaxe(ItemTierList.solarionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("solarionite_pickaxe")),
 				nihilionite_axe = new ItemNihilionAxe(ItemTierList.nihilionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("nihilionite_axe")),
+				
+				berries_of_life = new ItemVimionBerries(new Item.Properties().group(Main.vimion).food(VimionFoods.VIMION_BERRY)).setRegistryName(location("berries_of_life")),
+				berries_of_death = new ItemVimionBerries(new Item.Properties().group(Main.vimion).food(VimionFoods.NECRION_BERRY)).setRegistryName(location("berries_of_death")),
+				berries_of_the_sun = new ItemVimionBerries(new Item.Properties().group(Main.vimion).food(VimionFoods.SOLARION_BERRY)).setRegistryName(location("berries_of_the_sun")),
+				berries_of_annihilation = new ItemVimionBerries(new Item.Properties().group(Main.vimion).food(VimionFoods.NIHILION_BERRY)).setRegistryName(location("berries_of_annihilation")),
+				berries_of_the_universe = new ItemVimionBerries(new Item.Properties().group(Main.vimion).food(VimionFoods.EXPION_BERRY)).setRegistryName(location("berries_of_the_universe")),
+				
+				berries_of_life_bush = new BlockItem(ModBlocks.berries_of_life_bush, new Item.Properties()).setRegistryName(location("berries_of_life_bush")),
+				berries_of_death_bush = new BlockItem(ModBlocks.berries_of_death_bush, new Item.Properties()).setRegistryName(location("berries_of_death_bush")),
+				berries_of_the_sun_bush = new BlockItem(ModBlocks.berries_of_the_sun_bush, new Item.Properties()).setRegistryName(location("berries_of_the_sun_bush")),
+				berries_of_annihilation_bush = new BlockItem(ModBlocks.berries_of_annihilation_bush, new Item.Properties()).setRegistryName(location("berries_of_annihilation_bush")),
+				berries_of_the_universe_bush = new BlockItem(ModBlocks.berries_of_the_universe_bush, new Item.Properties()).setRegistryName(location("berries_of_the_universe_bush")),
+				
+				vimionic_grass_block = new BlockItem(ModBlocks.vimionic_grass_block, new Item.Properties().group(Main.vimion)).setRegistryName(location("vimionic_grass_block")),
+				necrionic_grass_block = new BlockItem(ModBlocks.necrionic_grass_block, new Item.Properties().group(Main.vimion)).setRegistryName(location("necrionic_grass_block")),
+				solarionic_grass_block = new BlockItem(ModBlocks.solarionic_grass_block, new Item.Properties().group(Main.vimion)).setRegistryName(location("solarionic_grass_block")),
+				nihilionic_grass_block = new BlockItem(ModBlocks.nihilionic_grass_block, new Item.Properties().group(Main.vimion)).setRegistryName(location("nihilionic_grass_block")),
+				expionic_grass_block = new BlockItem(ModBlocks.expionic_grass_block, new Item.Properties().group(Main.vimion)).setRegistryName(location("expionic_grass_block")),
 				
 				expionite_crate = new BlockItem(ModBlocks.expionite_crate, new Item.Properties().group(Main.vimion)).setRegistryName(location("expionite_crate")),
 				necrionite_summoner = new BlockItem(ModBlocks.necrionite_summoner, new Item.Properties().group(Main.vimion)).setRegistryName(location("necrionite_summoner")),

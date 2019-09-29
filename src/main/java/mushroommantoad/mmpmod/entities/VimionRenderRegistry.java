@@ -1,5 +1,7 @@
 package mushroommantoad.mmpmod.entities;
 
+import mushroommantoad.mmpmod.entities.boss.vimionic_abomination.VimionicAbominationEntity;
+import mushroommantoad.mmpmod.entities.boss.vimionic_abomination.VimionicAbominationRenderer;
 import mushroommantoad.mmpmod.entities.spectral.chicken.SpectralChickenEntity;
 import mushroommantoad.mmpmod.entities.spectral.chicken.SpectralChickenRenderer;
 import mushroommantoad.mmpmod.entities.spectral.cow.SpectralCowEntity;
@@ -24,5 +26,6 @@ public class VimionRenderRegistry
 		RenderingRegistry.registerEntityRenderingHandler(SpectralChickenEntity.class, new SpectralChickenRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(SpectralPigEntity.class, new SpectralPigRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(SpectralRabbitEntity.class, new SpectralRabbitRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(VimionicAbominationEntity.class, new VimionicAbominationRenderer.RenderFactory());
 	}
 }
