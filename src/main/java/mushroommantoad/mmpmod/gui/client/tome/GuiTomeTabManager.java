@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import mushroommantoad.mmpmod.Main;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class GuiTomeTabManager
 {
 	private GuiTome tome;

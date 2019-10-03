@@ -15,8 +15,8 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -56,7 +56,7 @@ public class ItemVimionBerries extends Item
 	{
 		if(stack.getItem() == ModItems.berries_of_annihilation)
 		{
-			tooltip.add(new StringTextComponent("And you thought that that chili destroyed your guts!").applyTextStyle(TextFormatting.RED));
+			tooltip.add(new TranslationTextComponent("berries.vimion.annihilation.lore").applyTextStyle(TextFormatting.RED));
 		}
 	}
 }

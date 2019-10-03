@@ -19,6 +19,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @SuppressWarnings("unused")
+@OnlyIn(Dist.CLIENT)
 public class GuiTome extends Screen 
 {
 	public static final ResourceLocation VIMION_TOME = new ResourceLocation(Main.modid + ":textures/gui/vimionite_tome.png");
@@ -37,7 +38,7 @@ public class GuiTome extends Screen
     
     public TabHandlingButton tabHandler;
 	   
-	public GuiTome(PlayerEntity player) 
+	public GuiTome(PlayerEntity player, int[] progress) 
 	{
 		// Set GUI Title
 		super(new StringTextComponent(" "));

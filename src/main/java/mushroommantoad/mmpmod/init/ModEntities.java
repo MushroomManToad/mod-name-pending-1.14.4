@@ -28,7 +28,7 @@ public class ModEntities
 	public static EntityType<?> SPECTRAL_PIG = EntityType.Builder.create(SpectralPigEntity::new, EntityClassification.CREATURE).build(Main.modid + ":spectral_pig").setRegistryName(location("spectral_pig"));
 	public static EntityType<?> SPECTRAL_RABBIT = EntityType.Builder.create(SpectralRabbitEntity::new, EntityClassification.CREATURE).build(Main.modid + ":spectral_rabbit").setRegistryName(location("spectral_rabbit"));
 	
-	public static EntityType<?> VIMIONIC_ABOMINATION = EntityType.Builder.create(VimionicAbominationEntity::new, EntityClassification.MONSTER).build(Main.modid + ":vimionic_abomination").setRegistryName(location("vimionic_abomination"));
+	public static EntityType<?> VIMIONIC_ABOMINATION = EntityType.Builder.create(VimionicAbominationEntity::new, EntityClassification.MONSTER).size(0.5f, 2.9f).build(Main.modid + ":vimionic_abomination").setRegistryName(location("vimionic_abomination"));
 	
 	public static Item spectral_sheep_egg;
 	public static Item spectral_cow_egg;

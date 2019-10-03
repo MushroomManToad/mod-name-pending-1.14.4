@@ -9,7 +9,10 @@ import mushroommantoad.mmpmod.gui.client.tome.pages.PagesNihilion;
 import mushroommantoad.mmpmod.gui.client.tome.pages.PagesSolarion;
 import mushroommantoad.mmpmod.gui.client.tome.pages.PagesVimion;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class GuiTomeChapter 
 {
 	public static final ResourceLocation VIMION_TOME = new ResourceLocation(Main.modid + ":textures/gui/vimionite_tome.png");

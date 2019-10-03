@@ -75,5 +75,8 @@
 	"entity.vimion.spectral_pig": "Spectral Pig",
 	"entity.vimion.spectral_rabbit": "Spectral Rabbit",
 	
+	"bossbar.vimion.vimionic_abomination.name": "Vimionic Abomination",
+	"berries.vimion.annihilation.lore": "And you thought that that chili destroyed your guts!",
+	
 	"itemGroup.vimion": "Vimion"
 }

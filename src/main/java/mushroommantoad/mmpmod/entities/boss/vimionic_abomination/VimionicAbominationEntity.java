@@ -9,10 +9,17 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.ServerBossInfo;
 import net.minecraft.world.World;
 
 public class VimionicAbominationEntity extends CreatureEntity 
 {
+	private final ServerBossInfo bossInfo = (ServerBossInfo)(new ServerBossInfo(new TranslationTextComponent("bossbar.vimion.vimionic_abomination.name").applyTextStyle(TextFormatting.GREEN), BossInfo.Color.GREEN, BossInfo.Overlay.PROGRESS)).setCreateFog(true);
+	
 	@SuppressWarnings("unchecked")
 	public VimionicAbominationEntity(EntityType<? extends CreatureEntity> type, World worldIn) 
 	{
@@ -44,6 +51,33 @@ public class VimionicAbominationEntity extends CreatureEntity
 	@Override
 	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) 
 	{
-		return 0.95F * sizeIn.height;
+		return 0.9F * sizeIn.height;
+	}
+	
+	@Override
+	public void addTrackingPlayer(ServerPlayerEntity player)
+	{
+		super.addTrackingPlayer(player);
+		this.bossInfo.addPlayer(player);
+	}
+	
+	@Override
+	protected void updateAITasks() 
+	{
+		this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+		super.updateAITasks();
+	}
+
+	@Override
+	public void removeTrackingPlayer(ServerPlayerEntity player) 
+	{
+		super.removeTrackingPlayer(player);
+		this.bossInfo.removePlayer(player);
+	}
+	
+	@Override
+	public boolean isNonBoss() 
+	{
+		return false;
 	}
 }

@@ -1,15 +1,15 @@
 package mushroommantoad.mmpmod.items;
 
-import mushroommantoad.mmpmod.gui.client.tome.GuiTome;
-import net.minecraft.client.Minecraft;
+import mushroommantoad.mmpmod.network.SendBookOpenPacket;
+import mushroommantoad.mmpmod.network.VimionPacketHandler;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkDirection;
 
 public class ItemVimioniteTome extends Item
 {
@@ -19,13 +19,16 @@ public class ItemVimioniteTome extends Item
 		super(properties);
 	}
 	
-	// Function to open a Client-side-only GUI.
-	// There is no need for a GUI handler for these, only for containers
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) 
 	{
-		if(worldIn.isRemote) Minecraft.getInstance().displayGuiScreen(new GuiTome(playerIn));
+		if(!worldIn.isRemote)
+		{
+			int[] values = new int[500];
+			ServerPlayerEntity playerMP = (ServerPlayerEntity) playerIn;
+			if(playerIn.getPersistentData().contains("VimionAdvancements")) values = playerIn.getPersistentData().getIntArray("VimionAdvancements");
+			VimionPacketHandler.CHANNEL.sendTo(new SendBookOpenPacket(values), playerMP.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
+		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 }

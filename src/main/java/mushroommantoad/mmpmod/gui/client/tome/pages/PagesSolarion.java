@@ -8,8 +8,11 @@ import mushroommantoad.mmpmod.gui.client.tome.GuiTomeHoverObject;
 import mushroommantoad.mmpmod.gui.client.tome.GuiTomePage;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 @SuppressWarnings("unused")
+@OnlyIn(Dist.CLIENT)
 public class PagesSolarion 
 {
 	private static ResourceLocation SOLARION_GEMSTONE = new ResourceLocation(Main.modid + ":textures/gui/icon/solarion_gemstone.png");

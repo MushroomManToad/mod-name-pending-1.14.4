@@ -2,6 +2,10 @@ package mushroommantoad.mmpmod.gui.client.tome;
 
 import java.util.ArrayList;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+@OnlyIn(Dist.CLIENT)
 public class GuiTomePage 
 {
 	public ArrayList<GuiTomeHoverObject> ho;

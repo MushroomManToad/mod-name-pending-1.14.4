@@ -10,7 +10,9 @@ import mushroommantoad.mmpmod.init.ModItems;
 import mushroommantoad.mmpmod.init.ModSoundEvents;
 import mushroommantoad.mmpmod.init.ModTileEntities;
 import mushroommantoad.mmpmod.itemgroups.ItemGroupVimion;
+import mushroommantoad.mmpmod.network.VimionPacketHandler;
 import mushroommantoad.mmpmod.util.MushroomsEventHandler;
+import mushroommantoad.mmpmod.util.VimionicTomeListener;
 import mushroommantoad.mmpmod.world.OreGeneration;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
@@ -31,18 +33,22 @@ public class Main {
 	public static Main instance;
 	public static final String modid = "vimion";
 	private static final Logger logger = LogManager.getLogger(modid);
+	VimionPacketHandler networkHandler = new VimionPacketHandler();
 
 	public static final ItemGroup vimion = new ItemGroupVimion();
 
 	public Main() {
 		instance = this;
 
+		networkHandler.registerPackets();
+		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 
 		MinecraftForge.EVENT_BUS.register(this);
 		
 		MinecraftForge.EVENT_BUS.register(new MushroomsEventHandler());
+		MinecraftForge.EVENT_BUS.register(new VimionicTomeListener());
 	}
 
 	// PreInit

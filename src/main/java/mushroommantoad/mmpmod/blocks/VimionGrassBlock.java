@@ -59,11 +59,11 @@ public class VimionGrassBlock extends Block
 
 					if(e.isEntityUndead())
 					{
-						e.addPotionEffect(new EffectInstance(Effects.WITHER, 40));
+						e.addPotionEffect(new EffectInstance(Effects.WITHER, 40, 4));
 					}
 					else
 					{
-						e.addPotionEffect(new EffectInstance(Effects.REGENERATION, 40));
+						if(!e.isPotionActive(Effects.REGENERATION)) e.addPotionEffect(new EffectInstance(Effects.REGENERATION, 60, 1, true, false));
 					}
 				
 				}
@@ -72,11 +72,11 @@ public class VimionGrassBlock extends Block
 
 					if(e.isEntityUndead())
 					{
-						e.addPotionEffect(new EffectInstance(Effects.REGENERATION, 40));
+						e.addPotionEffect(new EffectInstance(Effects.REGENERATION, 40, 4));
 					}
 					else
 					{
-						e.addPotionEffect(new EffectInstance(Effects.WITHER, 40));
+						e.addPotionEffect(new EffectInstance(Effects.WITHER, 40, 4));
 					}
 				
 				}

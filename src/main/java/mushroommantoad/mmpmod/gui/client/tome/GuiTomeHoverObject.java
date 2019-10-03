@@ -9,7 +9,10 @@ import com.mojang.blaze3d.platform.GlStateManager;
 
 import mushroommantoad.mmpmod.Main;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class GuiTomeHoverObject 
 {
 	public static final ResourceLocation VIMION_TOME = new ResourceLocation(Main.modid + ":textures/gui/vimionite_tome.png");
@@ -22,6 +25,7 @@ public class GuiTomeHoverObject
 	public int y;
 	
 	public int wrapWidth;
+	public int reverseWrapWidth;
 	
 	public ResourceLocation icon;
 	public String name;
@@ -36,6 +40,7 @@ public class GuiTomeHoverObject
 		this.name = name;
 		this.hover = hover;
 		this.wrapWidth = this.tome.guiLeft + this.tome.xSize - this.tome.guiLeft - this.x - 50;
+		this.reverseWrapWidth = this.x - 4;
 	}
 	
 	// Draws the Icon
@@ -76,8 +81,16 @@ public class GuiTomeHoverObject
 	
 	public void drawHoverBox()
 	{
-		drawHoverBackground();
-		drawHoverText();
+		if(tome.guiLeft + x + 28 < tome.width / 2)
+		{
+			drawHoverBackground();
+			drawHoverText();
+		}
+		else
+		{
+			drawReverseHoverBackground();
+			drawReverseHoverText();
+		}
 		drawHoverIcon();
 	}
 	
@@ -146,6 +159,60 @@ public class GuiTomeHoverObject
 		for(int i = 0; i < findOptimalLines(hover, wrapWidth).size(); i++)
 		{
 			tome.drawString(tome.getFontRenderer(), findOptimalLines(hover, wrapWidth).get(i), tome.guiLeft + x + 30, tome.guiTop + y + 16 + (i * 10), 14737632);
+		}
+	}
+	
+	public void drawReverseHoverBackground()
+	{
+		GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+		tome.getMinecraft().getTextureManager().bindTexture(VIMION_TOME);
+		
+	    int i = tome.guiLeft + x + 5;
+	    int j = y + ((tome.height - tome.ySize) / 2);
+	    
+	    
+	    tome.blit(i, j, 36, 244, 4, 4);
+	    int lS = findLongestString(findOptimalLines(hover, reverseWrapWidth)) / 4;
+	    for(int k = 0; k <= lS + 1; k++)
+	    {
+	    	tome.blit(i - (k * 4) - 4, j, 32, 244, 4, 4);
+	    }
+	    tome.blit(i - (lS * 4) - 12, j, 28, 244, 4, 4);
+	    
+	    for(int k = 1; k <= ((findOptimalLines(hover, reverseWrapWidth).size() * 10) / 4) + 3; k++)
+	    {
+		    tome.blit(i, j + (k * 4), 36, 248, 4, 4);
+		    for(int l = 0; l <= lS + 1; l++)
+		    {
+		    	tome.blit(i - ((l + 1) * 4), j + (k * 4), 32, 248, 4, 4);
+		    }
+		    tome.blit(i - (lS * 4) - 12, j + (k * 4), 28, 248, 4, 4);
+	    }
+	    
+	    int yValEnd = 4 + j + (((findOptimalLines(hover, reverseWrapWidth).size() * 10) / 4) + 3) * 4;
+	    
+	    tome.blit(i, yValEnd, 36, 252, 4, 4);
+	    for(int k = 0; k <= lS + 1; k++)
+	    {
+	    	tome.blit(i - (k * 4) - 4, yValEnd, 32, 252, 4, 4);
+	    }
+	    tome.blit(i - (lS * 4) - 12, yValEnd, 28, 252, 4, 4);
+	}
+	
+	public void drawReverseHoverText()
+	{
+		int titleColor = 16763136;
+		if(tome.chapter.name == "vimion") titleColor = 9626932;
+		if(tome.chapter.name == "necrion") titleColor = 6637703;
+		if(tome.chapter.name == "solarion") titleColor = 16579401;
+		if(tome.chapter.name == "nihilion") titleColor = 16537929;
+		if(tome.chapter.name == "expion") titleColor = 4821756;
+		
+		tome.drawString(tome.getFontRenderer(), this.name, tome.guiLeft + x - findLongestString(findOptimalLines(hover, reverseWrapWidth)), tome.guiTop + y + 4, titleColor);
+		
+		for(int i = 0; i < findOptimalLines(hover, reverseWrapWidth).size(); i++)
+		{
+			tome.drawString(tome.getFontRenderer(), findOptimalLines(hover, reverseWrapWidth).get(i), tome.guiLeft + x - findLongestString(findOptimalLines(hover, reverseWrapWidth)), tome.guiTop + y + 16 + (i * 10), 14737632);
 		}
 	}
 	
