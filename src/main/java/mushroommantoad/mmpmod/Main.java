@@ -11,6 +11,8 @@ import mushroommantoad.mmpmod.init.ModSoundEvents;
 import mushroommantoad.mmpmod.init.ModTileEntities;
 import mushroommantoad.mmpmod.itemgroups.ItemGroupVimion;
 import mushroommantoad.mmpmod.network.VimionPacketHandler;
+import mushroommantoad.mmpmod.proxy.ClientProxy;
+import mushroommantoad.mmpmod.proxy.CommonProxy;
 import mushroommantoad.mmpmod.util.MushroomsEventHandler;
 import mushroommantoad.mmpmod.util.VimionicTomeListener;
 import mushroommantoad.mmpmod.world.OreGeneration;
@@ -23,6 +25,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -33,6 +36,7 @@ public class Main {
 	public static Main instance;
 	public static final String modid = "vimion";
 	private static final Logger logger = LogManager.getLogger(modid);
+	public static CommonProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 	VimionPacketHandler networkHandler = new VimionPacketHandler();
 
 	public static final ItemGroup vimion = new ItemGroupVimion();

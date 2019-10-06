@@ -22,11 +22,11 @@ import net.minecraftforge.event.RegistryEvent.Register;
 
 public class ModEntities 
 {
-	public static EntityType<?> SPECTRAL_SHEEP = EntityType.Builder.create(SpectralSheepEntity::new, EntityClassification.CREATURE).build(Main.modid + ":spectral_sheep").setRegistryName(location("spectral_sheep"));
-	public static EntityType<?> SPECTRAL_COW = EntityType.Builder.create(SpectralCowEntity::new, EntityClassification.CREATURE).build(Main.modid + ":spectral_cow").setRegistryName(location("spectral_cow"));
-	public static EntityType<?> SPECTRAL_CHICKEN = EntityType.Builder.create(SpectralChickenEntity::new, EntityClassification.CREATURE).build(Main.modid + ":spectral_chicken").setRegistryName(location("spectral_chicken"));
-	public static EntityType<?> SPECTRAL_PIG = EntityType.Builder.create(SpectralPigEntity::new, EntityClassification.CREATURE).build(Main.modid + ":spectral_pig").setRegistryName(location("spectral_pig"));
-	public static EntityType<?> SPECTRAL_RABBIT = EntityType.Builder.create(SpectralRabbitEntity::new, EntityClassification.CREATURE).build(Main.modid + ":spectral_rabbit").setRegistryName(location("spectral_rabbit"));
+	public static EntityType<?> SPECTRAL_SHEEP = EntityType.Builder.create(SpectralSheepEntity::new, EntityClassification.CREATURE).size(0.9F, 1.3F).build(Main.modid + ":spectral_sheep").setRegistryName(location("spectral_sheep"));
+	public static EntityType<?> SPECTRAL_COW = EntityType.Builder.create(SpectralCowEntity::new, EntityClassification.CREATURE).size(0.9F, 1.4F).build(Main.modid + ":spectral_cow").setRegistryName(location("spectral_cow"));
+	public static EntityType<?> SPECTRAL_CHICKEN = EntityType.Builder.create(SpectralChickenEntity::new, EntityClassification.CREATURE).size(0.4F, 0.7F).build(Main.modid + ":spectral_chicken").setRegistryName(location("spectral_chicken"));
+	public static EntityType<?> SPECTRAL_PIG = EntityType.Builder.create(SpectralPigEntity::new, EntityClassification.CREATURE).size(0.9F, 0.9F).build(Main.modid + ":spectral_pig").setRegistryName(location("spectral_pig"));
+	public static EntityType<?> SPECTRAL_RABBIT = EntityType.Builder.create(SpectralRabbitEntity::new, EntityClassification.CREATURE).size(0.4F, 0.5F).build(Main.modid + ":spectral_rabbit").setRegistryName(location("spectral_rabbit"));
 	
 	public static EntityType<?> VIMIONIC_ABOMINATION = EntityType.Builder.create(VimionicAbominationEntity::new, EntityClassification.MONSTER).size(0.5f, 2.9f).build(Main.modid + ":vimionic_abomination").setRegistryName(location("vimionic_abomination"));
 	

@@ -1,5 +1,7 @@
 package mushroommantoad.mmpmod.items;
 
+import java.util.ArrayList;
+
 import mushroommantoad.mmpmod.network.SendBookOpenPacket;
 import mushroommantoad.mmpmod.network.VimionPacketHandler;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,7 +15,8 @@ import net.minecraftforge.fml.network.NetworkDirection;
 
 public class ItemVimioniteTome extends Item
 {
-
+	String[] nbtIDs = {"VimionAdvancements", "NecrionAdvancements", "SolarionAdvancements","NihilionAdvancements","ExpionAdvancements"};
+	
 	public ItemVimioniteTome(Properties properties) 
 	{
 		super(properties);
@@ -24,9 +27,39 @@ public class ItemVimioniteTome extends Item
 	{
 		if(!worldIn.isRemote)
 		{
-			int[] values = new int[500];
+			//FIXME Remove this before releasing
+			
+			/*
+			if(playerIn.isSneaking())
+			{
+				for(int i = 0; i < 5; i++)
+				{
+					int[] emptiness = new int[100];
+					playerIn.getPersistentData().putIntArray(nbtIDs[i], emptiness);
+				}
+			}
+			*/
+				
+			//FIXME Remove this before releasing
+			
+			
+			
+			ArrayList<Integer> vals = new ArrayList<>();
 			ServerPlayerEntity playerMP = (ServerPlayerEntity) playerIn;
-			if(playerIn.getPersistentData().contains("VimionAdvancements")) values = playerIn.getPersistentData().getIntArray("VimionAdvancements");
+			for(int i = 0; i < 5; i++)
+			{
+				if(playerIn.getPersistentData().contains(nbtIDs[i]))
+					for(int j = 0; j < 100; j++)
+						vals.add(playerIn.getPersistentData().getIntArray(nbtIDs[i])[j]);
+				else
+					for(int j = 0; j < 100; j++)
+						vals.add(0);
+			}
+			int[] values = new int[500];
+		    for (int i = 0; i < vals.size(); i++)
+		    {
+		    	values[i] = vals.get(i).intValue();
+		    }
 			VimionPacketHandler.CHANNEL.sendTo(new SendBookOpenPacket(values), playerMP.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);

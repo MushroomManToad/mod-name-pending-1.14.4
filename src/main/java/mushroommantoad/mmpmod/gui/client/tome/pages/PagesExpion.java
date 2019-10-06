@@ -6,6 +6,7 @@ import mushroommantoad.mmpmod.Main;
 import mushroommantoad.mmpmod.gui.client.tome.GuiTome;
 import mushroommantoad.mmpmod.gui.client.tome.GuiTomeHoverObject;
 import mushroommantoad.mmpmod.gui.client.tome.GuiTomePage;
+import mushroommantoad.mmpmod.util.VTIDHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -28,7 +29,7 @@ public class PagesExpion
 		PlayerEntity player = tome.getPlayer();
 		ArrayList<GuiTomeHoverObject> ho = new ArrayList<>();
 		
-		ho.add(new GuiTomeHoverObject(tome, 10, tome.ySize / 2 - 14, EXPION_GEMSTONE, "Expion!", "Obtain an Expion Gemstone"));
+		if(tome.getProgress()[VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER] == 1) ho.add(new GuiTomeHoverObject(tome, 10, tome.ySize / 2 - 14, EXPION_GEMSTONE, "Expion!", PagesDisplayText.HOVER_EXPION_GEMSTONE, tome.getProgress()[VTIDHandler.OBJECTIVE_EXPION_GEMSTONE] == 1, PagesDisplayText.GREY_EXPION_GEMSTONE, PagesDisplayText.GOLD_EXPION_GEMSTONE));
 		
 		return new GuiTomePage(tome, ho);
 	}

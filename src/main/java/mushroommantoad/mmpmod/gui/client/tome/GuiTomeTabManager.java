@@ -20,9 +20,13 @@ public class GuiTomeTabManager
 	
 	public int activeTab = 0;
 	
-	public GuiTomeTabManager(GuiTome tome)
+	public GuiTomeTabManager(GuiTome tome, String activeTabID)
 	{
 		this.tome = tome;
+		if(activeTabID == "necrion") activeTab = 1;
+		if(activeTabID == "solarion") activeTab = 2;
+		if(activeTabID == "nihilion") activeTab = 3;
+		if(activeTabID == "expion") activeTab = 4;
 	}
 	
 	public void getTabs()

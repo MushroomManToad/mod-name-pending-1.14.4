@@ -32,13 +32,26 @@ public class GuiTomeChapter
 		this.tome = tome;
 	}
 	
+	public GuiTomeChapter(GuiTome tome, String name, int page_number)
+	{
+		this.name = name;
+		this.tome = tome;
+		this.page_number = page_number;
+	}
+	
 	public void setPage()
 	{
+		tome.clearHoverButtons();
 		if(name == "vimion") page = PagesVimion.getPage(tome, page_number);
 		if(name == "necrion") page = PagesNecrion.getPage(tome, page_number);
 		if(name == "solarion") page = PagesSolarion.getPage(tome, page_number);
 		if(name == "nihilion") page = PagesNihilion.getPage(tome, page_number);
 		if(name == "expion") page = PagesExpion.getPage(tome, page_number);
+		for(GuiTomeHoverObject ho : page.ho)
+		{
+			GuiTome.HoverObjectButton hoverButton = new GuiTome.HoverObjectButton(tome.guiLeft + ho.x, tome.guiTop + ho.y, 28, 28, " ", (p_213029_1_) -> { page.handleHoverObjectClickEvent(tome.mousePosX, tome.mousePosY );}); 
+			tome.addCustomButton(hoverButton);
+		}
 	}
 	
 	public void drawBackground()

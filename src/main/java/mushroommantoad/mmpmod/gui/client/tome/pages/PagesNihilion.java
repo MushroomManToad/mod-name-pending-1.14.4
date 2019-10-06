@@ -6,6 +6,7 @@ import mushroommantoad.mmpmod.Main;
 import mushroommantoad.mmpmod.gui.client.tome.GuiTome;
 import mushroommantoad.mmpmod.gui.client.tome.GuiTomeHoverObject;
 import mushroommantoad.mmpmod.gui.client.tome.GuiTomePage;
+import mushroommantoad.mmpmod.util.VTIDHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -28,7 +29,7 @@ public class PagesNihilion
 		PlayerEntity player = tome.getPlayer();
 		ArrayList<GuiTomeHoverObject> ho = new ArrayList<>();
 		
-		ho.add(new GuiTomeHoverObject(tome, 10, tome.ySize / 2 - 14, NIHILION_GEMSTONE, "Nihilion!", "Obtain a Nihilion Gemstone"));
+		if(tome.getProgress()[VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER] == 1) ho.add(new GuiTomeHoverObject(tome, 10, tome.ySize / 2 - 14, NIHILION_GEMSTONE, "Nihilion!", PagesDisplayText.HOVER_NIHILION_GEMSTONE, tome.getProgress()[VTIDHandler.OBJECTIVE_NIHILION_GEMSTONE] == 1, PagesDisplayText.GREY_NIHILION_GEMSTONE, PagesDisplayText.GOLD_NIHILION_GEMSTONE));
 		
 		return new GuiTomePage(tome, ho);
 	}

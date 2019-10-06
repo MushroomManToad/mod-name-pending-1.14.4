@@ -3,16 +3,16 @@ loaderVersion="[28,)" #mandatory (26 is current forge version)
 [[mods]] #mandatory
 modId="vimion" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="DEV WEEK 05" #mandatory
+version="DEV WEEK 07" #mandatory
 displayName="Vimion Mod" #mandatory
-credits="Thanks Harry, Cadiboo, RedstoneTim, Tebreca, andrew0030, and many others from the Discord server for getting me started with modding!" #optional
+credits="Thanks Harry, Cadiboo, RedstoneTim, Tebreca, andrew0030, ZippyMagician and many others from the Discord server for getting me started with modding!" #optional
 authors="MushroomManToad" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 Adds multiple "Concealed Ores" that are just out of phase with reality.
 With the Geological Phaser, a player can safely draw these minerals into our world for further research and usage.
 
-THIS IS CURRENTLY AN INDEV BUILD. AS SUCH, IT WILL LIKELY BE BUGGY AND LACKING SEVERAL KEY FEATURES, BUT SEVERAL UPDATES ARE STILL PLANNED FOR THE NEAR FUTURE!
+THIS IS CURRENTLY AN INDEV BUILD. AS SUCH, IT WILL LIKELY BE BUGGY AND LACKING SEVERAL KEY FEATURES, BUT MANY UPDATES ARE STILL PLANNED FOR THE NEAR FUTURE!
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.vimion]] #optional

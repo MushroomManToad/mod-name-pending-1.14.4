@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 import com.mojang.blaze3d.platform.GlStateManager;
 
 import mushroommantoad.mmpmod.Main;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -30,8 +32,12 @@ public class GuiTomeHoverObject
 	public ResourceLocation icon;
 	public String name;
 	public String hover;
+	public boolean isGold;
 	
-	public GuiTomeHoverObject(GuiTome tome, int x, int y, ResourceLocation icon, String name, String hover)
+	public String greyText;
+	public String goldText;
+	
+	public GuiTomeHoverObject(GuiTome tome, int x, int y, ResourceLocation icon, String name, String hover, boolean isGold, String greyText, String goldText)
 	{
 		this.tome = tome;
 		this.x = x;
@@ -39,6 +45,9 @@ public class GuiTomeHoverObject
 		this.icon = icon;
 		this.name = name;
 		this.hover = hover;
+		this.isGold = isGold;
+		this.greyText = greyText;
+		this.goldText = goldText;
 		this.wrapWidth = this.tome.guiLeft + this.tome.xSize - this.tome.guiLeft - this.x - 50;
 		this.reverseWrapWidth = this.x - 4;
 	}
@@ -51,7 +60,8 @@ public class GuiTomeHoverObject
 		
 	    int i = tome.guiLeft;
 	    int j = (tome.height - tome.ySize) / 2;
-	    tome.blit(i + x, j + y, 0, 228, 28, 28);
+	    if(this.isGold) tome.blit(i + x, j + y, 130, 228, 28, 28);
+	    else tome.blit(i + x, j + y, 0, 228, 28, 28);
 	    
 	    tome.getMinecraft().getTextureManager().bindTexture(icon);
 	    GlStateManager.scaled(0.0625, 0.0625, 0);
@@ -101,7 +111,8 @@ public class GuiTomeHoverObject
 		
 	    int i = tome.guiLeft;
 	    int j = (tome.height - tome.ySize) / 2;
-	    tome.blit(i + x, j + y, 0, 200, 28, 28);
+	    if(this.isGold) tome.blit(i + x, j + y, 130, 200, 28, 28);
+	    else tome.blit(i + x, j + y, 0, 200, 28, 28);
 	    
 	    tome.getMinecraft().getTextureManager().bindTexture(icon);
 	    GlStateManager.scaled(0.0625, 0.0625, 0);
@@ -229,40 +240,50 @@ public class GuiTomeHoverObject
 		return lS;
 	}
 	
-   private List<String> findOptimalLines(String hover, int wrapWidth) {
-	      if (hover.isEmpty()) 
-	      {
-	         return Collections.emptyList();
-	      } 
-	      else 
-	      {
-	         List<String> list = tome.getMinecraft().fontRenderer.listFormattedStringToWidth(hover, wrapWidth);
-	         if (list.size() < 2) 
-	         {
-	            return list;
-	         } 
-	         else 
-	         {
-	            String s = list.get(0);
-	            String s1 = list.get(1);
-	            int i = tome.getMinecraft().fontRenderer.getStringWidth(s + ' ' + s1.split(" ")[0]);
-	            if (i - wrapWidth <= 10) {
-	               return tome.getMinecraft().fontRenderer.listFormattedStringToWidth(hover, i);
-	            } 
-	            else 
-	            {
-	               Matcher matcher = PATTERN.matcher(s);
-	               if (matcher.matches()) 
-	               {
-	                  int j = tome.getMinecraft().fontRenderer.getStringWidth(matcher.group(1));
-	                  if (wrapWidth - j <= 10) 
-	                  {
-	                     return tome.getMinecraft().fontRenderer.listFormattedStringToWidth(hover, j);
-	                  }
-	               }
-	               return list;
-	            }
-	         }
-	      }
+   private List<String> findOptimalLines(String hover, int wrapWidth) 
+   {
+	   if (hover.isEmpty()) 
+	   {
+		   return Collections.emptyList();
+	   } 
+	   else 
+	   {
+		   List<String> list = tome.getMinecraft().fontRenderer.listFormattedStringToWidth(hover, wrapWidth);
+		   if (list.size() < 2) 
+		   {
+			   return list;
+		   } 
+		   else 
+		   {
+			   String s = list.get(0);
+			   String s1 = list.get(1);
+			   int i = tome.getMinecraft().fontRenderer.getStringWidth(s + ' ' + s1.split(" ")[0]);
+			   if (i - wrapWidth <= 10)
+			   {
+				   return tome.getMinecraft().fontRenderer.listFormattedStringToWidth(hover, i);
+			   } 
+			   else 
+			   {
+				   Matcher matcher = PATTERN.matcher(s);
+				   if (matcher.matches()) 
+				   {
+					   int j = tome.getMinecraft().fontRenderer.getStringWidth(matcher.group(1));
+					   if (wrapWidth - j <= 10) 
+					   {
+						   return tome.getMinecraft().fontRenderer.listFormattedStringToWidth(hover, j);
+					   }
+				   }
+				   return list;
+			   }
+		   }
 	   }
+   }
+   
+   public void openInfoGui()
+   {
+	   String chapter = tome.chapter.getName();
+	   int page_number = tome.chapter.page_number;
+	   tome.getMinecraft().displayGuiScreen((Screen)null);
+	   Minecraft.getInstance().displayGuiScreen(new GuiTomeInfoPage(tome.getPlayer(), tome.getProgress(), chapter, page_number, this.isGold ? this.goldText : this.greyText));
+   }
 }
