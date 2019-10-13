@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 import mushroommantoad.mmpmod.Main;
 import mushroommantoad.mmpmod.entities.boss.vimionic_abomination.VimionicAbominationEntity;
+import mushroommantoad.mmpmod.entities.boss.vimionic_abomination.absorption_spire.EntityAbsorptionSpire;
 import mushroommantoad.mmpmod.entities.spectral.chicken.SpectralChickenEntity;
 import mushroommantoad.mmpmod.entities.spectral.cow.SpectralCowEntity;
 import mushroommantoad.mmpmod.entities.spectral.pig.SpectralPigEntity;
@@ -30,6 +31,8 @@ public class ModEntities
 	
 	public static EntityType<?> VIMIONIC_ABOMINATION = EntityType.Builder.create(VimionicAbominationEntity::new, EntityClassification.MONSTER).size(0.5f, 2.9f).build(Main.modid + ":vimionic_abomination").setRegistryName(location("vimionic_abomination"));
 	
+	public static EntityType<?> ABSORPTION_SPIRE = EntityType.Builder.create(EntityAbsorptionSpire::new, EntityClassification.MISC).size(0.25f, 2.5f).build(Main.modid + ":absorption_spire").setRegistryName(location("absorption_spire"));
+	
 	public static Item spectral_sheep_egg;
 	public static Item spectral_cow_egg;
 	public static Item spectral_chicken_egg;
@@ -45,7 +48,8 @@ public class ModEntities
 			SPECTRAL_CHICKEN,
 			SPECTRAL_PIG,
 			SPECTRAL_RABBIT,
-			VIMIONIC_ABOMINATION
+			VIMIONIC_ABOMINATION,
+			ABSORPTION_SPIRE
 		);
 		
 		registerEntityWorldSpawns();

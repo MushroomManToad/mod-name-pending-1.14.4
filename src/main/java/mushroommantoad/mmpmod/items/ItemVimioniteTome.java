@@ -29,7 +29,6 @@ public class ItemVimioniteTome extends Item
 		{
 			//FIXME Remove this before releasing
 			
-			/*
 			if(playerIn.isSneaking())
 			{
 				for(int i = 0; i < 5; i++)
@@ -38,7 +37,6 @@ public class ItemVimioniteTome extends Item
 					playerIn.getPersistentData().putIntArray(nbtIDs[i], emptiness);
 				}
 			}
-			*/
 				
 			//FIXME Remove this before releasing
 			
