@@ -5,7 +5,9 @@ import org.apache.logging.log4j.Logger;
 import mushroommantoad.mmpmod.Main;
 import mushroommantoad.mmpmod.items.ItemAdvancedGeologicPhaser;
 import mushroommantoad.mmpmod.items.ItemEnergizedGemstone;
+import mushroommantoad.mmpmod.items.ItemExpioniteShovel;
 import mushroommantoad.mmpmod.items.ItemGeologicPhaser;
+import mushroommantoad.mmpmod.items.ItemMemoryCrystal;
 import mushroommantoad.mmpmod.items.ItemNihilionAxe;
 import mushroommantoad.mmpmod.items.ItemSolarionPickaxe;
 import mushroommantoad.mmpmod.items.ItemSpirit;
@@ -38,6 +40,10 @@ public class ModItems
 	public static Item expion_gemstone;
 	public static Item energized_expion;
 	
+	public static Item vimioplasm;
+	
+	public static Item memory_crystal;
+	
 	public static Item vimionic_tome;
 	public static Item geologic_phaser;
 	public static Item advanced_geologic_phaser;
@@ -45,6 +51,7 @@ public class ModItems
 	public static Item vimionite_dagger;
 	public static Item solarionite_pickaxe;
 	public static Item nihilionite_axe;
+	public static Item expionite_spade;
 	
 	public static Item vimion_block;
 	public static Item concealed_vimionite_ore;
@@ -109,6 +116,10 @@ public class ModItems
 				expion_gemstone = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("expion_gemstone")),
 				energized_expion = new ItemEnergizedGemstone(new Item.Properties().group(Main.vimion)).setRegistryName(location("energized_expion")),
 				
+				vimioplasm = new Item(new Item.Properties().group(Main.vimion)).setRegistryName(location("vimioplasm")),
+				
+				memory_crystal = new ItemMemoryCrystal(new Item.Properties().group(Main.vimion)).setRegistryName(location("memory_crystal")),
+				
 				vimionic_tome = new ItemVimioniteTome(new Item.Properties().group(Main.vimion)).setRegistryName(location("vimionic_tome")),
 				geologic_phaser = new ItemGeologicPhaser(new Item.Properties().group(Main.vimion).maxDamage(250)).setRegistryName(location("geologic_phaser")),
 				advanced_geologic_phaser = new ItemAdvancedGeologicPhaser(new Item.Properties().group(Main.vimion).maxDamage(1000)).setRegistryName(location("advanced_geologic_phaser")),
@@ -122,6 +133,7 @@ public class ModItems
 				vimionite_dagger = new ItemVimionDagger(ItemTierList.vimionite, 0, -0.6f, new Item.Properties().group(Main.vimion)).setRegistryName(location("vimionite_dagger")),
 				solarionite_pickaxe = new ItemSolarionPickaxe(ItemTierList.solarionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("solarionite_pickaxe")),
 				nihilionite_axe = new ItemNihilionAxe(ItemTierList.nihilionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("nihilionite_axe")),
+				expionite_spade = new ItemExpioniteShovel(ItemTierList.expionite, 0, -3.4f, new Item.Properties().group(Main.vimion)).setRegistryName(location("expionite_spade")),
 				
 				berries_of_life = new ItemVimionBerries(new Item.Properties().group(Main.vimion).food(VimionFoods.VIMION_BERRY)).setRegistryName(location("berries_of_life")),
 				berries_of_death = new ItemVimionBerries(new Item.Properties().group(Main.vimion).food(VimionFoods.NECRION_BERRY)).setRegistryName(location("berries_of_death")),

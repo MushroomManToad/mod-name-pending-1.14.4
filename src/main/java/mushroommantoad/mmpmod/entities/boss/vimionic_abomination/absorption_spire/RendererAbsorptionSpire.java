@@ -27,14 +27,15 @@ public class RendererAbsorptionSpire extends EntityRenderer<EntityAbsorptionSpir
 	
 	@Override
 	public void doRender(EntityAbsorptionSpire entity, double x, double y, double z, float entityYaw, float partialTicks) {	
-		System.out.println("rendering");
 	     GlStateManager.pushMatrix();
 	     GlStateManager.disableCull();
 	     GlStateManager.enableAlphaTest();
 	     this.bindEntityTexture(entity);
 	     GlStateManager.translatef((float)x, (float)y, (float)z);
-	     GlStateManager.translatef(0.0F, -0.626F, 0.0F);
-	     this.model.render(entity, 0.0F, 0.0F, 0.0F, entity.rotationYaw, entity.rotationPitch, 1);
+	     GlStateManager.translatef(0.0F, 1F, 0.0F);
+	     float scaleFactor = 2.0f;
+	     GlStateManager.scalef(scaleFactor, scaleFactor, scaleFactor);
+	     this.model.render(entity, 0.0F, 0.0F, entity.ticksExisted + partialTicks, entity.rotationYaw, entity.rotationPitch, 0.05F);
 	     GlStateManager.popMatrix();
 	     GlStateManager.enableCull();
 	     super.doRender(entity, x, y, z, entityYaw, partialTicks);

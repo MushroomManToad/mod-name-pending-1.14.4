@@ -2,6 +2,7 @@ package mushroommantoad.mmpmod.entities.spectral.rabbit;
 
 import java.util.List;
 
+import mushroommantoad.mmpmod.entities.spectral.ISpectralEntity;
 import mushroommantoad.mmpmod.init.ModEntities;
 import mushroommantoad.mmpmod.init.ModSoundEvents;
 import net.minecraft.entity.CreatureEntity;
@@ -24,7 +25,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class SpectralRabbitEntity extends RabbitEntity
+public class SpectralRabbitEntity extends RabbitEntity implements ISpectralEntity
 {
 	@SuppressWarnings("unchecked")
 	public SpectralRabbitEntity(EntityType<? extends CreatureEntity> type, World worldIn) 

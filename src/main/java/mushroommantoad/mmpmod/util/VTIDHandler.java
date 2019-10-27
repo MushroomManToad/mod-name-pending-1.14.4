@@ -20,4 +20,5 @@ public class VTIDHandler
 	public static int OBJECTIVE_CRAFT_NIHILIONITE_AXE = 301;
 	
 	public static int OBJECTIVE_EXPION_GEMSTONE = 400;
+	public static int OBJECTIVE_CRAFT_EXPION_SHOVEL = 401;
 }

@@ -20,6 +20,7 @@ public class PagesVimion
 	private static ResourceLocation VIMION_GEMSTONE = new ResourceLocation(Main.modid + ":textures/gui/icon/vimion_gemstone.png");
 	private static ResourceLocation VIMIONITE_DAGGER = new ResourceLocation(Main.modid + ":textures/item/vimionite_dagger.png");
 	private static ResourceLocation ADVANCED_PHASER = new ResourceLocation(Main.modid + ":textures/gui/icon/advanced_geologic_phaser.png");
+	private static ResourceLocation VIMION_SPIRIT = new ResourceLocation(Main.modid + ":textures/gui/icon/vimion_spirit.png");
 	
 	// TODO
 	public static GuiTomePage getPage(GuiTome tome, int id)
@@ -39,6 +40,7 @@ public class PagesVimion
 		ho.add(new GuiTomeHoverObject(tome, 40, tome.ySize / 2 - 14, VIMION_GEMSTONE, "Vimion!", PagesDisplayText.HOVER_VIMION_GEMSTONE, tome.getProgress()[VTIDHandler.OBJECTIVE_VIMION_GEMSTONE] == 1, PagesDisplayText.GREY_VIMION_GEMSTONE, PagesDisplayText.GOLD_VIMION_GEMSTONE));
 		if(tome.getProgress()[VTIDHandler.OBJECTIVE_VIMION_GEMSTONE] == 1) ho.add(new GuiTomeHoverObject(tome, 70, tome.ySize / 2 + 14, ADVANCED_PHASER, "Advanced Phasing", PagesDisplayText.HOVER_ADVANCED_GEOLOGIC_PHASER, tome.getProgress()[VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER] == 1, PagesDisplayText.GREY_ADVANCED_GEOLOGIC_PHASER, PagesDisplayText.GOLD_ADVANCED_GEOLOGIC_PHASER));
 		if(tome.getProgress()[VTIDHandler.OBJECTIVE_VIMION_GEMSTONE] == 1) ho.add(new GuiTomeHoverObject(tome, 70, tome.ySize / 2 - 42, VIMIONITE_DAGGER, "Spirits?", PagesDisplayText.HOVER_SPIRITS_QUESTION, tome.getProgress()[VTIDHandler.OBJECTIVE_CRAFT_VIMIONIC_DAGGER] == 1, PagesDisplayText.GREY_SPIRITS_QUESTION, PagesDisplayText.GOLD_SPIRITS_QUESTION));
+		if(tome.getProgress()[VTIDHandler.OBJECTIVE_CRAFT_VIMIONIC_DAGGER] == 1) ho.add(new GuiTomeHoverObject(tome, 138, tome.ySize / 2 - 42 - 4, VIMION_SPIRIT, "Spirits!", PagesDisplayText.HOVER_OBTAIN_MOB_SPIRIT, tome.getProgress()[VTIDHandler.OBJECTIVE_OBTAIN_MOB_SPIRIT] == 1, PagesDisplayText.GREY_OBTAIN_MOB_SPIRIT, PagesDisplayText.GOLD_OBTAIN_MOB_SPIRIT));
 		
 		return new GuiTomePage(tome, ho);
 	}

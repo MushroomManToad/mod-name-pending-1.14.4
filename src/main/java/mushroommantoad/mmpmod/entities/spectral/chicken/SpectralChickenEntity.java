@@ -2,6 +2,7 @@ package mushroommantoad.mmpmod.entities.spectral.chicken;
 
 import java.util.List;
 
+import mushroommantoad.mmpmod.entities.spectral.ISpectralEntity;
 import mushroommantoad.mmpmod.init.ModEntities;
 import mushroommantoad.mmpmod.init.ModSoundEvents;
 import net.minecraft.entity.CreatureEntity;
@@ -33,7 +34,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class SpectralChickenEntity extends CreatureEntity
+public class SpectralChickenEntity extends CreatureEntity implements ISpectralEntity
 {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
 	

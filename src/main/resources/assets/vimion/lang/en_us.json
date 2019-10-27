@@ -21,9 +21,14 @@
 	"item.vimion.spectral_pig_spawn_egg": "Spectral Pig Spawn Egg",
 	"item.vimion.spectral_rabbit_spawn_egg": "Spectral Rabbit Spawn Egg",
 	
+	"item.vimion.vimioplasm": "Vimioplasm",
+	
+	"item.vimion.memory_crystal": "Memory Crystal",
+	
 	"item.vimion.vimionite_dagger": "Vimionite Dagger",
 	"item.vimion.solarionite_pickaxe": "Solarionite Pickaxe",
 	"item.vimion.nihilionite_axe": "Nihilionite Axe",
+	"item.vimion.expionite_spade": "Expionite Spade",
 	"item.vimion.vimionic_tome": "Vimionic Tome",
 	"item.vimion.geologic_phaser": "Geologic Phaser",
 	"item.vimion.advanced_geologic_phaser": "Advanced Geologic Phaser",
@@ -77,6 +82,10 @@
 	
 	"bossbar.vimion.vimionic_abomination.name": "Vimionic Abomination",
 	"berries.vimion.annihilation.lore": "And you thought that that chili destroyed your guts!",
+	"vimion.vimionic.tome.lore": "The notes of a researcher, expanded as you learn more about the world of Vimion around you",
+	"vimion.memory.crystal.lore": "This should be Creative only. Resets a player's progress in the Vimionic Tome on right click",
+	
+	"death.attack.absorptionSpire": "%1$s was consumed by a Vimionic Absorption Spire",
 	
 	"itemGroup.vimion": "Vimion"
 }

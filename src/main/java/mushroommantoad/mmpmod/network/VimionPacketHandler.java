@@ -21,5 +21,10 @@ public class VimionPacketHandler
 		.encoder(SendBookOpenPacket::serialize).decoder(SendBookOpenPacket::deserialize)
 		.consumer(SendBookOpenPacket::handle)
 		.add();
+		
+		CHANNEL.messageBuilder(SToCAbsorptionSpireParticlePacket.class, id++)
+		.encoder(SToCAbsorptionSpireParticlePacket::serialize).decoder(SToCAbsorptionSpireParticlePacket::deserialize)
+		.consumer(SToCAbsorptionSpireParticlePacket::handle)
+		.add();
 	}
 }

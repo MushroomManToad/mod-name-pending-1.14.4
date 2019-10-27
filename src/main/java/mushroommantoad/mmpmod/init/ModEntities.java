@@ -31,7 +31,7 @@ public class ModEntities
 	
 	public static EntityType<?> VIMIONIC_ABOMINATION = EntityType.Builder.create(VimionicAbominationEntity::new, EntityClassification.MONSTER).size(0.5f, 2.9f).build(Main.modid + ":vimionic_abomination").setRegistryName(location("vimionic_abomination"));
 	
-	public static EntityType<?> ABSORPTION_SPIRE = EntityType.Builder.create(EntityAbsorptionSpire::new, EntityClassification.MISC).size(0.25f, 2.5f).build(Main.modid + ":absorption_spire").setRegistryName(location("absorption_spire"));
+	public static EntityType<?> ABSORPTION_SPIRE = EntityType.Builder.create(EntityAbsorptionSpire::new, EntityClassification.MISC).size(0.5f, 2.4f).setCustomClientFactory((spawnEntity,world) -> new EntityAbsorptionSpire(world)).setShouldReceiveVelocityUpdates(true).build(Main.modid + ":absorption_spire").setRegistryName(location("absorption_spire"));
 	
 	public static Item spectral_sheep_egg;
 	public static Item spectral_cow_egg;

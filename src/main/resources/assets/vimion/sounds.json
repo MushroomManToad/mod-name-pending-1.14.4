@@ -145,5 +145,40 @@
         "sounds": [
         	{ "name": "vimion:mob/spectral/rabbit/death", "stream": true}
         ]
-    }  
+    },
+    "vimionic_abomination_say":
+    {
+        "category": "entity",
+        "subtitle": "Vimionic Abomination Growls",
+        "sounds": [
+        	{ "name": "vimion:mob/boss/abomination/vimion/say1", "stream": true},
+        	{ "name": "vimion:mob/boss/abomination/vimion/say2", "stream": true},
+        	{ "name": "vimion:mob/boss/abomination/vimion/say3", "stream": true}
+        ]
+    },
+    "vimionic_abomination_hurt":
+    {
+        "category": "entity",
+        "subtitle": "Vimionic Abomination Suffers",
+        "sounds": [
+        	{ "name": "vimion:mob/boss/abomination/vimion/hurt1", "stream": true},
+        	{ "name": "vimion:mob/boss/abomination/vimion/hurt2", "stream": true}
+        ]
+    },
+    "vimionic_abomination_death":
+    {
+        "category": "entity",
+        "subtitle": "Vimionic Abomination Fades",
+        "sounds": [
+        	{ "name": "vimion:mob/boss/abomination/vimion/death1", "stream": true}
+        ]
+    },
+    "absorption_pillar_summon":
+    {
+        "category": "entity",
+        "subtitle": "Absorption Pillar Summoned",
+        "sounds": [
+        	{ "name": "vimion:mob/boss/abomination/vimion/summon_pillar", "stream": true}
+        ]
+    }
 }

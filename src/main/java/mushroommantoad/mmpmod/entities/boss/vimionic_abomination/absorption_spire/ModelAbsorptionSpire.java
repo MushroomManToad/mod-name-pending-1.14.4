@@ -26,9 +26,11 @@ public class ModelAbsorptionSpire extends EntityModel<EntityAbsorptionSpire> {
 	}
 
 	@Override
-	public void render(EntityAbsorptionSpire entity, float f, float f1, float f2, float f3, float f4, float f5) {
+	public void render(EntityAbsorptionSpire entity, float f, float f1, float ageInTicks, float f3, float f4, float f5) 
+	{
+		
+		this.bone.rotateAngleY = ageInTicks / 30;
 		bone.render(f5);
-		System.out.println("rendered");
 	}
 	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;

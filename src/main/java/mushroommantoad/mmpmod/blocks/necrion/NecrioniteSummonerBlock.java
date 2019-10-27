@@ -35,6 +35,4 @@ public class NecrioniteSummonerBlock extends Block
 	{
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
-	
-	
 }

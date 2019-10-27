@@ -2,6 +2,7 @@ package mushroommantoad.mmpmod.entities.spectral.sheep;
 
 import java.util.List;
 
+import mushroommantoad.mmpmod.entities.spectral.ISpectralEntity;
 import mushroommantoad.mmpmod.init.ModEntities;
 import mushroommantoad.mmpmod.init.ModSoundEvents;
 import net.minecraft.block.BlockState;
@@ -38,7 +39,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class SpectralSheepEntity extends CreatureEntity
+public class SpectralSheepEntity extends CreatureEntity implements ISpectralEntity
 {
 	private EatGrassGoal eatGrassGoal;
 	private int sheepTimer;

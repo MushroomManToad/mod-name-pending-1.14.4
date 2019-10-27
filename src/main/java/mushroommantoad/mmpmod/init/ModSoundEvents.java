@@ -25,6 +25,11 @@ public class ModSoundEvents
 	public static final SoundEvent spectral_chicken_hurt = new SoundEvent(location("spectral_chicken_hurt"));
 	public static final SoundEvent spectral_chicken_death = new SoundEvent(location("spectral_chicken_death"));
 	
+	public static final SoundEvent vimionic_abomination_say = new SoundEvent(location("vimionic_abomination_say"));
+	public static final SoundEvent vimionic_abomination_hurt = new SoundEvent(location("vimionic_abomination_hurt"));
+	public static final SoundEvent vimionic_abomination_death = new SoundEvent(location("vimionic_abomination_death"));
+	public static final SoundEvent absorption_pillar_summon = new SoundEvent(location("absorption_pillar_summon"));
+	
 	public static void registerAll(RegistryEvent.Register<SoundEvent> event, Logger logger)
 	{
 		event.getRegistry().registerAll
@@ -43,7 +48,11 @@ public class ModSoundEvents
 				spectral_rabbit_death.setRegistryName(location("spectral_rabbit_death")),
 				spectral_chicken_say.setRegistryName(location("spectral_chicken_say")),
 				spectral_chicken_hurt.setRegistryName(location("spectral_chicken_hurt")),
-				spectral_chicken_death.setRegistryName(location("spectral_chicken_death"))
+				spectral_chicken_death.setRegistryName(location("spectral_chicken_death")),
+				vimionic_abomination_say.setRegistryName(location("vimionic_abomination_say")),
+				vimionic_abomination_hurt.setRegistryName(location("vimionic_abomination_hurt")),
+				vimionic_abomination_death.setRegistryName(location("vimionic_abomination_death")),
+				absorption_pillar_summon.setRegistryName(location("absorption_pillar_summon"))
 		);
 	}
 	

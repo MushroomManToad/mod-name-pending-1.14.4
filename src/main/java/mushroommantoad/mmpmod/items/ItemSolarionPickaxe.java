@@ -67,19 +67,31 @@ public class ItemSolarionPickaxe extends PickaxeItem
 			nbt.putBoolean("active", false);
 			nbt.putInt("charge", 0);
 		}
-		stack.setTag(nbt);
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 	
 	@Override
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) 
 	{
-		return slotChanged;
+		return slotChanged || !oldStack.getItem().equals(newStack.getItem());
 	}
+
+	@Override
+	public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) 
+	{
+		return shouldCauseReequipAnimation(oldStack, newStack, false);
+	}
+	
+	@Override
+	public boolean canContinueUsing(ItemStack oldStack, ItemStack newStack)
+    {
+        return oldStack.getItem().equals(newStack.getItem());
+    }
 	
 	@Override
 	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) 
 	{
+		
 		CompoundNBT nbt = stack.getTag();
 		if(nbt == null) nbt = new CompoundNBT();
 		
@@ -110,13 +122,14 @@ public class ItemSolarionPickaxe extends PickaxeItem
 				}
 			}
 		}
+
 		
 		if(!worldIn.isRemote)
 		{
 			if(!nbt.contains("active")) nbt.putBoolean("active", false);
 			if(!nbt.contains("charge")) nbt.putInt("charge", 0);
-			if(!nbt.contains("tick")) nbt.putInt("tick", 0);
-
+			if(!nbt.contains("tick")) {nbt.putInt("tick", 0); stack.setTag(nbt); /*System.out.println(1);*/}
+			
 			boolean active = nbt.getBoolean("active");
 			int charge = nbt.getInt("charge");
 			if(nbt.getBoolean("active"))
@@ -142,26 +155,17 @@ public class ItemSolarionPickaxe extends PickaxeItem
 					if(canSeeSky(worldIn, entityIn)) charge++;
 				}
 			}
+			
 			nbt.putBoolean("active", active);
 			nbt.putInt("charge", charge);
-			
-			if(nbt.getInt("tick") == 19)
-			{
-				if(nbt.contains("active"))
-				{
-					if(nbt.getBoolean("active"))
-					{
-						
-					}
-				}
-			}
 			
 			if(nbt.getInt("tick") >= 20)
 			{
 				nbt.putInt("tick", 0);
 			}
-			nbt.putInt("tick", nbt.getInt("tick") + 1);
+			else {int tick = Integer.valueOf(nbt.getInt("tick") + 1); nbt.putInt("tick", tick);}
 		}
+		
 		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
 	}
 	

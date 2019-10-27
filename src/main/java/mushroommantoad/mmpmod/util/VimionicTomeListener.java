@@ -2,6 +2,7 @@ package mushroommantoad.mmpmod.util;
 
 import mushroommantoad.mmpmod.init.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.ItemCraftedEvent;
@@ -14,12 +15,14 @@ public class VimionicTomeListener
 	{
 		if(!event.getPlayer().getEntityWorld().isRemote)
 		{
+			Item i = event.getItem().getItem().getItem();
+			
 			//
 			// CHAPTER: VIMION HANDLER
 			//
 			
-			if(event.getItem().getItem().getItem() == ModItems.vimion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_VIMION_GEMSTONE, -1, event.getPlayer());
-			if(event.getItem().getItem().getItem() == ModItems.vimion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_VIMION_GEMSTONE, -1, event.getPlayer());
+			if(i == ModItems.vimion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_VIMION_GEMSTONE, -1, event.getPlayer());
+			if(i == ModItems.chicken_spirit || i == ModItems.cow_spirit || i == ModItems.pig_spirit || i == ModItems.rabbit_spirit || i == ModItems.sheep_spirit) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_OBTAIN_MOB_SPIRIT, VTIDHandler.OBJECTIVE_CRAFT_VIMIONIC_DAGGER, event.getPlayer());
 			
 			//
 			// CHAPTER: VIMION HANDLER
@@ -29,7 +32,7 @@ public class VimionicTomeListener
 			// CHAPTER: NECRION HANDLER
 			//
 			
-			if(event.getItem().getItem().getItem() == ModItems.necrion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_NECRION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
+			if(i == ModItems.necrion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_NECRION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
 			
 			//
 			// CHAPTER: NECRION HANDLER
@@ -39,7 +42,7 @@ public class VimionicTomeListener
 			// CHAPTER: SOLARION HANDLER
 			//
 			
-			if(event.getItem().getItem().getItem() == ModItems.solarion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_SOLARION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
+			if(i == ModItems.solarion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_SOLARION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
 			
 			//
 			// CHAPTER: SOLARION HANDLER
@@ -49,7 +52,7 @@ public class VimionicTomeListener
 			// CHAPTER: NIHILION HANDLER
 			//
 			
-			if(event.getItem().getItem().getItem() == ModItems.nihilion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_NIHILION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
+			if(i == ModItems.nihilion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_NIHILION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
 			
 			//
 			// CHAPTER: NIHILION HANDLER
@@ -59,7 +62,7 @@ public class VimionicTomeListener
 			// CHAPTER: EXPION HANDLER
 			//
 			
-			if(event.getItem().getItem().getItem() == ModItems.expion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_EXPION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
+			if(i == ModItems.expion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_EXPION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
 			
 			//
 			// CHAPTER: EXPION HANDLER
@@ -72,13 +75,15 @@ public class VimionicTomeListener
 	{
 		if(!event.getPlayer().getEntityWorld().isRemote)
 		{
+			Item i = event.getCrafting().getItem();
+			
 			//
 			// CHAPTER: VIMION HANDLER
 			//
 			
-			if(event.getCrafting().getItem() == ModItems.vimion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_VIMION_GEMSTONE, -1, event.getPlayer());
-			if(event.getCrafting().getItem() == ModItems.advanced_geologic_phaser) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, VTIDHandler.OBJECTIVE_VIMION_GEMSTONE, event.getPlayer());
-			if(event.getCrafting().getItem() == ModItems.vimionite_dagger) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_VIMIONIC_DAGGER, VTIDHandler.OBJECTIVE_VIMION_GEMSTONE, event.getPlayer());
+			if(i == ModItems.vimion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_VIMION_GEMSTONE, -1, event.getPlayer());
+			if(i == ModItems.advanced_geologic_phaser) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, VTIDHandler.OBJECTIVE_VIMION_GEMSTONE, event.getPlayer());
+			if(i == ModItems.vimionite_dagger) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_VIMIONIC_DAGGER, VTIDHandler.OBJECTIVE_VIMION_GEMSTONE, event.getPlayer());
 			
 			//
 			// CHAPTER: VIMION HANDLER
@@ -88,8 +93,8 @@ public class VimionicTomeListener
 			// CHAPTER: NECRION HANDLER
 			//
 			
-			if(event.getCrafting().getItem() == ModItems.necrion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_NECRION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
-			if(event.getCrafting().getItem() == ModItems.necrionite_summoner) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_NECRIONITE_SUMMONER, VTIDHandler.OBJECTIVE_NECRION_GEMSTONE, event.getPlayer());
+			if(i == ModItems.necrion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_NECRION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
+			if(i == ModItems.necrionite_summoner) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_NECRIONITE_SUMMONER, VTIDHandler.OBJECTIVE_OBTAIN_MOB_SPIRIT, event.getPlayer());
 			
 			//
 			// CHAPTER: NECRION HANDLER
@@ -99,8 +104,8 @@ public class VimionicTomeListener
 			// CHAPTER: SOLARION HANDLER
 			//
 			
-			if(event.getCrafting().getItem() == ModItems.solarion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_SOLARION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
-			if(event.getCrafting().getItem() == ModItems.solarionite_pickaxe) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_SOLARIONITE_PICKAXE, VTIDHandler.OBJECTIVE_SOLARION_GEMSTONE, event.getPlayer());
+			if(i == ModItems.solarion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_SOLARION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
+			if(i == ModItems.solarionite_pickaxe) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_SOLARIONITE_PICKAXE, VTIDHandler.OBJECTIVE_SOLARION_GEMSTONE, event.getPlayer());
 			
 			//
 			// CHAPTER: SOLARION HANDLER
@@ -110,8 +115,8 @@ public class VimionicTomeListener
 			// CHAPTER: NIHILION HANDLER
 			//
 			
-			if(event.getCrafting().getItem() == ModItems.nihilion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_NIHILION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
-			if(event.getCrafting().getItem() == ModItems.nihilionite_axe) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_NIHILIONITE_AXE, VTIDHandler.OBJECTIVE_NIHILION_GEMSTONE, event.getPlayer());
+			if(i == ModItems.nihilion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_NIHILION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
+			if(i == ModItems.nihilionite_axe) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_NIHILIONITE_AXE, VTIDHandler.OBJECTIVE_NIHILION_GEMSTONE, event.getPlayer());
 			
 			//
 			// CHAPTER: NIHILION HANDLER
@@ -121,7 +126,8 @@ public class VimionicTomeListener
 			// CHAPTER: EXPION HANDLER
 			//
 			
-			if(event.getCrafting().getItem() == ModItems.expion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_EXPION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
+			if(i == ModItems.expion_gemstone) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_EXPION_GEMSTONE, VTIDHandler.OBJECTIVE_CRAFT_ADVANCED_GEOLOGIC_PHASER, event.getPlayer());
+			if(i == ModItems.expionite_spade) handleStandardTomeDataUpdate(VTIDHandler.OBJECTIVE_CRAFT_EXPION_SHOVEL, VTIDHandler.OBJECTIVE_EXPION_GEMSTONE, event.getPlayer());
 			
 			//
 			// CHAPTER: EXPION HANDLER
